@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "2aEtUaw8OJaEa/yLlfpkYvjc32Bb062/4TfmUAvCG2u7X/LywzkDp5xlFUm9tL1TsWoyV1+AgCyqdMENSqGCqA==",
+  "success": true,
+  "projectFilePath": "B:\\___1MCT2\\Interaction_design\\Eindwerk\\Interaction_Design_Eindopdracht\\Interaction_Design_Eindopdracht\\Interaction_Design_Eindopdracht.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\basva\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\basva\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\basva\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\basva\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\basva\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\basva\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}
