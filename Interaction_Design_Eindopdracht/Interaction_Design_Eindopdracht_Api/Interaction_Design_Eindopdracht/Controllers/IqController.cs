@@ -86,5 +86,17 @@ namespace Interaction_Design_Eindopdracht.Controllers
         {
             return Ok(_countryData);
         }
+
+        [HttpGet("money-divided-by-1000")]
+        public ActionResult<IEnumerable<CountryIqData>> GetWithLowerNumers()
+        {
+            var newData = _countryData.Select(c =>
+            {
+                c.EducationExpenditure = c.EducationExpenditure / 1000;
+                c.AvgIncome = c.AvgIncome / 1000;
+                return c;
+            }).ToList();
+            return Ok(newData);
+        }
     }
 }
