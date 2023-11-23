@@ -187,41 +187,36 @@ function createBarChart(selectedCountries = [], selectedContinent = []) {
   });
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+$(document).ready(function () {
   // Call the fetchData function
   fetchData();
 
   // Call the function to create the bar chart
   createBarChart();
 
-
   // Add event listener for removing country filter button
-  let countryRemoveFilterButton = document.querySelector(
-    ".js-button-filter-country-remove"
-  );
+  let countryRemoveFilterButton = $(".js-button-filter-country-remove");
 
-  countryRemoveFilterButton.addEventListener("click", () => {
+  countryRemoveFilterButton.on("click", function () {
     $("#countrySelect").val(null).trigger("change");
     redrawChart();
   });
 
-  $("#countrySelect").on("change", function() {
+  $("#countrySelect").on("change", function () {
     redrawChart();
   });
 
-
   // Add a new event listener for removing continent filter button
-  let continentRemoveFilterButton = document.querySelector(
-    ".js-button-filter-continent-remove"
-  );
-  continentRemoveFilterButton.addEventListener("click", () => {
+  let continentRemoveFilterButton = $(".js-button-filter-continent-remove");
+
+  continentRemoveFilterButton.on("click", function () {
     $("#continentSelect").val(null).trigger("change");
     redrawChart();
   });
 
-  $("#continentSelect").on("change", function() {
+  $("#continentSelect").on("change", function () {
     redrawChart();
   });
 });
 
-window.addEventListener("resize", redrawChart);
+$(window).on("resize", redrawChart);
