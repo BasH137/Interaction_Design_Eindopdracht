@@ -7,12 +7,12 @@ async function fetchData() {
   try {
     const response = await fetch(`${baseUrl}/api/Iq/money-divided-by-1000`);
     const result = await response.json();
-    data = result.map(entry => ({
+    data = result.map((entry) => ({
       country: entry.country,
       iq: entry.iq,
       educationExpenditure: entry.educationExpenditure,
       avgIncome: entry.avgIncome,
-      continent: entry.continent
+      continent: entry.continent,
     }));
     populateContinentList();
     populateCountryList();
@@ -21,28 +21,19 @@ async function fetchData() {
     console.error("Error fetching data:", error);
   }
 }
-let continentFilterButton = document.querySelector(".js-button-filter-continent");
-continentFilterButton.addEventListener("click", redrawChart);
-
-// Add a new event listener for removing continent filter button
-let continentRemoveFilterButton = document.querySelector(".js-button-filter-continent-remove");
-continentRemoveFilterButton.addEventListener("click", () => {
-  $("#continentSelect").val(null).trigger("change");
-  redrawChart();
-});
-
-
 
 function populateCountryList() {
   const selectedContinents = $("#continentSelect").val();
   const select = $("#countrySelect");
 
-  const countriesToKeep = data.filter(entry => selectedContinents.includes(entry.continent));
+  const countriesToKeep = data.filter((entry) =>
+    selectedContinents.includes(entry.continent)
+  );
 
   // Remove options that are not in countriesToKeep
-  select.find('option').each(function() {
+  select.find("option").each(function () {
     const country = $(this).val();
-    if (!countriesToKeep.some(entry => entry.country === country)) {
+    if (!countriesToKeep.some((entry) => entry.country === country)) {
       $(this).remove();
     }
   });
@@ -70,12 +61,11 @@ function populateCountryList() {
   select.select2();
 }
 
-
 function populateContinentList() {
   const select = $("#continentSelect");
 
   // Extract unique continents from the data
-  const uniqueContinents = [...new Set(data.map(entry => entry.continent))];
+  const uniqueContinents = [...new Set(data.map((entry) => entry.continent))];
 
   uniqueContinents.forEach((continent) => {
     const option = new Option(continent, continent);
@@ -86,14 +76,13 @@ function populateContinentList() {
   select.select2();
 
   // Add event listener to continent select
-  select.on('change', function () {
+  select.on("change", function () {
     populateCountryList();
   });
 
   // Trigger change to populate initial country list
   select.val("Europe").trigger("change");
 }
-
 
 // Add a new event listener for continent filter button
 
@@ -113,14 +102,21 @@ function createBarChart(selectedCountries = [], selectedContinent = []) {
   const canvas = document.getElementById("myBarChart");
   const ctx = canvas.getContext("2d");
 
-  const filteredData = data.filter((entry) =>
-    (selectedCountries.length > 0 ? selectedCountries.includes(entry.country) : true) &&
-    (selectedContinent.length > 0 ? selectedContinent.includes(entry.continent) : true)
+  const filteredData = data.filter(
+    (entry) =>
+      (selectedCountries.length > 0
+        ? selectedCountries.includes(entry.country)
+        : true) &&
+      (selectedContinent.length > 0
+        ? selectedContinent.includes(entry.continent)
+        : true)
   );
 
   const countries = filteredData.map((entry) => entry.country);
   const iqData = filteredData.map((entry) => entry.iq);
-  const expenditureData = filteredData.map((entry) => entry.educationExpenditure);
+  const expenditureData = filteredData.map(
+    (entry) => entry.educationExpenditure
+  );
   const incomeData = filteredData.map((entry) => entry.avgIncome);
 
   const isMobile = window.innerWidth <= 600;
@@ -169,13 +165,13 @@ function createBarChart(selectedCountries = [], selectedContinent = []) {
       plugins: {
         legend: {
           display: true,
-          position: 'top',
-          align: 'start',
-          textDirection: 'ltr',
+          position: "top",
+          align: "start",
+          textDirection: "ltr",
           labels: {
-            color: 'rgb(255, 99, 132)'
-          }
-        }
+            color: "rgb(255, 99, 132)",
+          },
+        },
       },
       maintainAspectRatio: false,
       indexAxis: isMobile ? "y" : "x",
@@ -187,7 +183,6 @@ function createBarChart(selectedCountries = [], selectedContinent = []) {
           beginAtZero: true,
         },
       },
-
     },
   });
 }
@@ -204,9 +199,38 @@ document.addEventListener("DOMContentLoaded", function () {
   countryFilterButton.addEventListener("click", redrawChart);
 
   // Add event listener for removing country filter button
-  let countryRemoveFilterButton = document.querySelector(".js-button-filter-country-remove");
+  let countryRemoveFilterButton = document.querySelector(
+    ".js-button-filter-country-remove"
+  );
+
   countryRemoveFilterButton.addEventListener("click", () => {
     $("#countrySelect").val(null).trigger("change");
     redrawChart();
   });
+
+  $("#countrySelect").on("change", function() {
+    redrawChart();
+  });
+
+
+
+  let continentFilterButton = document.querySelector(
+    ".js-button-filter-continent"
+  );
+  continentFilterButton.addEventListener("click", redrawChart);
+
+  // Add a new event listener for removing continent filter button
+  let continentRemoveFilterButton = document.querySelector(
+    ".js-button-filter-continent-remove"
+  );
+  continentRemoveFilterButton.addEventListener("click", () => {
+    $("#continentSelect").val(null).trigger("change");
+    redrawChart();
+  });
+
+  $("#continentSelect").on("change", function() {
+    redrawChart();
+  });
+
+
 });
