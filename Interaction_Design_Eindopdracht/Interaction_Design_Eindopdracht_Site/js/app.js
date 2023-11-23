@@ -36,20 +36,33 @@ continentRemoveFilterButton.addEventListener("click", () => {
 function populateCountryList() {
   const selectedContinents = $("#continentSelect").val();
   const select = $("#countrySelect");
-  select.empty(); // Clear previous options
 
-  if (selectedContinents && selectedContinents.length > 0) {
-    const filteredCountries = data.filter(entry => selectedContinents.includes(entry.continent));
+  const countriesToKeep = data.filter(entry => selectedContinents.includes(entry.continent));
 
-    filteredCountries.forEach((entry) => {
+  // Remove options that are not in countriesToKeep
+  select.find('option').each(function() {
+    const country = $(this).val();
+    if (!countriesToKeep.some(entry => entry.country === country)) {
+      $(this).remove();
+    }
+  });
+
+  if (countriesToKeep.length > 0) {
+    countriesToKeep.forEach((entry) => {
       const option = new Option(entry.country, entry.country);
-      select.append(option);
+      // Append only if the option doesn't exist
+      if (!select.find(`option[value="${entry.country}"]`).length) {
+        select.append(option);
+      }
     });
   } else {
-    // No continents selected, append all countries
+    // No continents selected or no matching countries, append all countries
     data.forEach((entry) => {
       const option = new Option(entry.country, entry.country);
-      select.append(option);
+      // Append only if the option doesn't exist
+      if (!select.find(`option[value="${entry.country}"]`).length) {
+        select.append(option);
+      }
     });
   }
 
