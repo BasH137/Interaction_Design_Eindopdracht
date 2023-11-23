@@ -194,9 +194,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // Call the function to create the bar chart
   createBarChart();
 
-  // Add event listener for country filter button
-  let countryFilterButton = document.querySelector(".js-button-filter-country");
-  countryFilterButton.addEventListener("click", redrawChart);
 
   // Add event listener for removing country filter button
   let countryRemoveFilterButton = document.querySelector(
@@ -213,12 +210,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 
-
-  let continentFilterButton = document.querySelector(
-    ".js-button-filter-continent"
-  );
-  continentFilterButton.addEventListener("click", redrawChart);
-
   // Add a new event listener for removing continent filter button
   let continentRemoveFilterButton = document.querySelector(
     ".js-button-filter-continent-remove"
@@ -231,6 +222,6 @@ document.addEventListener("DOMContentLoaded", function () {
   $("#continentSelect").on("change", function() {
     redrawChart();
   });
-
-
 });
+
+window.addEventListener("resize", redrawChart);
