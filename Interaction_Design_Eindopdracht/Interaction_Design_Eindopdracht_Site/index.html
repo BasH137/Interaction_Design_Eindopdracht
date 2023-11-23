@@ -1,19 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Eindopdracht</title>
-    <link rel="stylesheet" href="css/stylesheet.css" />
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.min.js"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Country Comparison</title>
+  <link rel="stylesheet" href="css/stylesheet.css" />
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
 
-    <script src="js/app.js"></script> 
-  </head>
-  <body>
+  <div class="select-container">
+    <select id="countrySelect" class="select-input" multiple="multiple">
+      <!-- Countries will be dynamically added here -->
+    </select>
+    <button class="compare-button js-button-filter" type="submit">Apply filters</button>
+    <button class="compare-button js-button-filter" type="submit">Remove filters</button>
+  </div>
 
-    <canvas id="myBarChart" width="400" height="200"></canvas>
+  <div class="chart-container">
+    <canvas id="myBarChart" class="chart"></canvas>
+  </div>
 
-
-  </body>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
 </html>
