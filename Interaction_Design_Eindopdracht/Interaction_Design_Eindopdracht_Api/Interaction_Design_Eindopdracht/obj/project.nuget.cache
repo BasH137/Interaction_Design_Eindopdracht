@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "supVu6pkwSP6WwLAyGLFK6S4ypGIAhjr4J08DJ4GHqfcepLOxR9c3wqGuWrvMpNAjgG6dfpU88u0ZZ/Pv9UF4g==",
+  "dgSpecHash": "+8v/eJ828iC0952WHTLcTnQyb33CctMoUU9E9AVN0JtrkSTc6DnSUEwE2ygLIetTrdjmS3IXqGSGpb83QVp8sg==",
   "success": true,
   "projectFilePath": "B:\\___1MCT2\\Interaction_design\\Eindwerk\\Interaction_Design_Eindopdracht\\Interaction_Design_Eindopdracht_Api\\Interaction_Design_Eindopdracht\\Interaction_Design_Eindopdracht_Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\basva\\.nuget\\packages\\microsoft.aspnet.cors\\5.3.0\\microsoft.aspnet.cors.5.3.0.nupkg.sha512",
     "C:\\Users\\basva\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\basva\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\basva\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\basva\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
     "C:\\Users\\basva\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
     "C:\\Users\\basva\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",

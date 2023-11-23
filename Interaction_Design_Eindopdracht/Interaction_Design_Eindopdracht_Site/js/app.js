@@ -1,18 +1,28 @@
 let baseUrl = "https://localhost:7284";
 let data = [];
+let continentData = [];
 let chartInstance;
 
 async function fetchData() {
   try {
     const response = await fetch(`${baseUrl}/api/Iq/money-divided-by-1000`);
-    data = await response.json();
-    console.log(data);
+    const result = await response.json();
+    data = result.map(entry => ({
+      country: entry.country,
+      iq: entry.iq,
+      educationExpenditure: entry.educationExpenditure,
+      avgIncome: entry.avgIncome,
+      continent: entry.continent
+    }));
     populateCountryList();
+    populateContinentList();
     createBarChart();
   } catch (error) {
     console.error("Error fetching data:", error);
   }
 }
+
+// No need for a separate fetch for continent data, it's included in the previous one
 
 function populateCountryList() {
   const select = $("#countrySelect");
@@ -26,30 +36,65 @@ function populateCountryList() {
   select.select2();
 }
 
-// Function to create or update the bar chart
-function createBarChart(selectedCountries = []) {
+function populateContinentList() {
+  const select = $("#continentSelect");
+
+  // Extract unique continents from the data
+  const uniqueContinents = [...new Set(data.map(entry => entry.continent))];
+
+  uniqueContinents.forEach((continent) => {
+    const option = new Option(continent, continent);
+    select.append(option);
+  });
+
+  // Initialize Select2
+  select.select2();
+
+  select.val("Europe").trigger("change");
+}
+
+// Add a new event listener for continent filter button
+let continentFilterButton = document.querySelector(".js-button-filter-continent");
+continentFilterButton.addEventListener("click", redrawChart);
+
+// Add a new event listener for removing continent filter button
+let continentRemoveFilterButton = document.querySelector(".js-button-filter-continent-remove");
+continentRemoveFilterButton.addEventListener("click", () => {
+  $("#continentSelect").val(null).trigger("change");
+  redrawChart();
+});
+
+function redrawChart() {
+  const selectedCountries = $("#countrySelect").val();
+  const selectedContinent = $("#continentSelect").val();
+
+  console.log(selectedCountries);
+  console.log(selectedContinent);
+
+  // Call the createBarChart function with selected countries and continent
+  createBarChart(selectedCountries, selectedContinent);
+}
+
+// Modify the createBarChart function to accept a selected continent parameter
+function createBarChart(selectedCountries = [], selectedContinent = []) {
   const canvas = document.getElementById("myBarChart");
   const ctx = canvas.getContext("2d");
 
   const filteredData = data.filter((entry) =>
-    selectedCountries.length > 0
-      ? selectedCountries.includes(entry.country)
-      : true
+    (selectedCountries.length > 0 ? selectedCountries.includes(entry.country) : true) &&
+    (selectedContinent.length > 0 ? selectedContinent.includes(entry.continent) : true)
   );
 
   const countries = filteredData.map((entry) => entry.country);
   const iqData = filteredData.map((entry) => entry.iq);
-  const expenditureData = filteredData.map(
-    (entry) => entry.educationExpenditure
-  );
+  const expenditureData = filteredData.map((entry) => entry.educationExpenditure);
   const incomeData = filteredData.map((entry) => entry.avgIncome);
 
   const isMobile = window.innerWidth <= 600;
- 
-  if(isMobile){
+
+  if (isMobile) {
     canvas.style = "height: 100vh";
-  }
-  else{
+  } else {
     canvas.style = "height: 37.5rem";
   }
 
@@ -88,18 +133,17 @@ function createBarChart(selectedCountries = []) {
       ],
     },
     options: {
-      // responsive: true,
       plugins: {
         legend: {
-            display: true,
-            position: 'top',
-            align: 'start',
-            textDirection: 'ltr',
-            labels: {
-                color: 'rgb(255, 99, 132)'
-            }
+          display: true,
+          position: 'top',
+          align: 'start',
+          textDirection: 'ltr',
+          labels: {
+            color: 'rgb(255, 99, 132)'
+          }
         }
-    },
+      },
       maintainAspectRatio: false,
       indexAxis: isMobile ? "y" : "x",
       scales: {
@@ -110,32 +154,26 @@ function createBarChart(selectedCountries = []) {
           beginAtZero: true,
         },
       },
-      
+
     },
-});
-
+  });
 }
-
-function redrawChart() {
-  const selectedCountries = $("#countrySelect").val();
-
-  console.log(selectedCountries);
-
-// Call the createBarChart function with selected countries
-createBarChart(selectedCountries);
-}
-
-// Call the function to create the bar chart
-window.addEventListener("resize", () => {
-  const selectedCountries = $("#countrySelect").val();
-
-  redrawChart(selectedCountries);
-});
 
 document.addEventListener("DOMContentLoaded", function () {
   // Call the fetchData function
   fetchData();
 
-  let button = document.querySelector(".js-button-filter");
-  button.addEventListener("click", redrawChart);
+  // Call the function to create the bar chart
+  createBarChart();
+
+  // Add event listener for country filter button
+  let countryFilterButton = document.querySelector(".js-button-filter-country");
+  countryFilterButton.addEventListener("click", redrawChart);
+
+  // Add event listener for removing country filter button
+  let countryRemoveFilterButton = document.querySelector(".js-button-filter-country-remove");
+  countryRemoveFilterButton.addEventListener("click", () => {
+    $("#countrySelect").val(null).trigger("change");
+    redrawChart();
+  });
 });

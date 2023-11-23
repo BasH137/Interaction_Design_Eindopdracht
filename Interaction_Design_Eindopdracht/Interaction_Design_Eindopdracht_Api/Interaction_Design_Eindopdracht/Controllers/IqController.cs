@@ -5,6 +5,7 @@ using Interaction_Design_Eindopdracht.Data.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualBasic.FileIO;
+using Newtonsoft.Json;
 
 namespace Interaction_Design_Eindopdracht.Controllers
 {
@@ -90,13 +91,72 @@ namespace Interaction_Design_Eindopdracht.Controllers
         [HttpGet("money-divided-by-1000")]
         public ActionResult<IEnumerable<CountryIqData>> GetWithLowerNumers()
         {
-            var newData = _countryData.Select(c =>
+            //var newData = _countryData.Select(c =>
+            //{
+            //    c.EducationExpenditure = c.EducationExpenditure / 1000;
+            //    c.AvgIncome = c.AvgIncome / 1000;
+            //    return c;
+            //}).ToList();
+            //return Ok(newData);
+            //
+            string filePath = @"B:\___1MCT2\Interaction_design\Eindwerk\Interaction_Design_Eindopdracht\Interaction_Design_Eindopdracht_Api\Interaction_Design_Eindopdracht\Data\Source\UpdatedData.json";
+
+            try
             {
-                c.EducationExpenditure = c.EducationExpenditure / 1000;
-                c.AvgIncome = c.AvgIncome / 1000;
-                return c;
-            }).ToList();
-            return Ok(newData);
+                // Read the JSON file
+                string jsonData = System.IO.File.ReadAllText(filePath);
+
+                // Deserialize the JSON data to a list of CountryIqData
+                List<CountryIqData> countryDataList = JsonConvert.DeserializeObject<List<CountryIqData>>(jsonData);
+
+                // Update values in the list
+                //var newData = countryDataList.Select(c =>
+                //{
+                //    c.EducationExpenditure = c.EducationExpenditure / 1000;
+                //    c.AvgIncome = c.AvgIncome / 1000;
+                //    return c;
+                //}).ToList();
+
+                // Return the updated data
+                //return Ok(newData);
+                return Ok(countryDataList);
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions that may occur during file reading or deserialization
+                return StatusCode(500, $"Internal Server Error: {ex.Message}");
+            }
+        }
+        [HttpGet("test")]
+        public ActionResult<IEnumerable<CountryIqData>> Test()
+        {
+            string filePath = @"B:\___1MCT2\Interaction_design\Eindwerk\Interaction_Design_Eindopdracht\Interaction_Design_Eindopdracht_Api\Interaction_Design_Eindopdracht\Data\Source\UpdatedData.json";
+
+            try
+            {
+                // Read the JSON file
+                string jsonData = System.IO.File.ReadAllText(filePath);
+
+                // Deserialize the JSON data to a list of CountryIqData
+                List<CountryIqData> countryDataList = JsonConvert.DeserializeObject<List<CountryIqData>>(jsonData).Where(c => c.Continent == string.Empty).ToList();
+
+                // Update values in the list
+                //var newData = countryDataList.Select(c =>
+                //{
+                //    c.EducationExpenditure = c.EducationExpenditure / 1000;
+                //    c.AvgIncome = c.AvgIncome / 1000;
+                //    return c;
+                //}).ToList();
+
+                // Return the updated data
+                //return Ok(newData);
+                return Ok(countryDataList);
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions that may occur during file reading or deserialization
+                return StatusCode(500, $"Internal Server Error: {ex.Message}");
+            }
         }
     }
 }

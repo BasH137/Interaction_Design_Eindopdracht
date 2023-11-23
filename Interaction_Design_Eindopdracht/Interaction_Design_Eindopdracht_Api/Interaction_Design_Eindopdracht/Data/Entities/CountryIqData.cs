@@ -8,5 +8,6 @@
         public double EducationExpenditure { get; set; }
         public double AvgIncome { get; set; }
         public double AvgTemp { get; set; }
+        public string Continent { get; set; }
     }
 }

@@ -10,12 +10,22 @@
 </head>
 <body>
 
+  <!-- Add a new select element for continents -->
+<div class="select-container">
+  <select id="continentSelect" class="select-input" multiple="multiple">
+      <!-- Continents will be dynamically added here -->
+  </select>
+  <button class="compare-button js-button-filter-continent" type="submit">Apply continent filter</button>
+  <button class="compare-button js-button-filter-continent-remove" type="submit">Remove continent filter</button>
+</div>
+
+
   <div class="select-container">
     <select id="countrySelect" class="select-input" multiple="multiple">
       <!-- Countries will be dynamically added here -->
     </select>
-    <button class="compare-button js-button-filter" type="submit">Apply filters</button>
-    <button class="compare-button js-button-filter" type="submit">Remove filters</button>
+    <button class="compare-button js-button-filter-country" type="submit">Apply filters</button>
+    <button class="compare-button js-button-filter-country-remove" type="submit">Remove filters</button>
   </div>
 
   <div class="chart-container">
