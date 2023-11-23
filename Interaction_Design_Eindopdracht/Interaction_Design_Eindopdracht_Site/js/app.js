@@ -14,27 +14,49 @@ async function fetchData() {
       avgIncome: entry.avgIncome,
       continent: entry.continent
     }));
-    populateCountryList();
     populateContinentList();
+    populateCountryList();
     createBarChart();
   } catch (error) {
     console.error("Error fetching data:", error);
   }
 }
+let continentFilterButton = document.querySelector(".js-button-filter-continent");
+continentFilterButton.addEventListener("click", redrawChart);
 
-// No need for a separate fetch for continent data, it's included in the previous one
+// Add a new event listener for removing continent filter button
+let continentRemoveFilterButton = document.querySelector(".js-button-filter-continent-remove");
+continentRemoveFilterButton.addEventListener("click", () => {
+  $("#continentSelect").val(null).trigger("change");
+  redrawChart();
+});
+
+
 
 function populateCountryList() {
+  const selectedContinents = $("#continentSelect").val();
   const select = $("#countrySelect");
+  select.empty(); // Clear previous options
 
-  data.forEach((entry) => {
-    const option = new Option(entry.country, entry.country);
-    select.append(option);
-  });
+  if (selectedContinents && selectedContinents.length > 0) {
+    const filteredCountries = data.filter(entry => selectedContinents.includes(entry.continent));
+
+    filteredCountries.forEach((entry) => {
+      const option = new Option(entry.country, entry.country);
+      select.append(option);
+    });
+  } else {
+    // No continents selected, append all countries
+    data.forEach((entry) => {
+      const option = new Option(entry.country, entry.country);
+      select.append(option);
+    });
+  }
 
   // Initialize Select2
   select.select2();
 }
+
 
 function populateContinentList() {
   const select = $("#continentSelect");
@@ -50,19 +72,17 @@ function populateContinentList() {
   // Initialize Select2
   select.select2();
 
+  // Add event listener to continent select
+  select.on('change', function () {
+    populateCountryList();
+  });
+
+  // Trigger change to populate initial country list
   select.val("Europe").trigger("change");
 }
 
-// Add a new event listener for continent filter button
-let continentFilterButton = document.querySelector(".js-button-filter-continent");
-continentFilterButton.addEventListener("click", redrawChart);
 
-// Add a new event listener for removing continent filter button
-let continentRemoveFilterButton = document.querySelector(".js-button-filter-continent-remove");
-continentRemoveFilterButton.addEventListener("click", () => {
-  $("#continentSelect").val(null).trigger("change");
-  redrawChart();
-});
+// Add a new event listener for continent filter button
 
 function redrawChart() {
   const selectedCountries = $("#countrySelect").val();
