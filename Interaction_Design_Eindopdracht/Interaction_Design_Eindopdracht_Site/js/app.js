@@ -449,7 +449,7 @@ $(document).ready(function () {
   const isMobile = window.outerWidth <= 600;
   const resizeEvent = isMobile ? "orientationchange" : "resize";
 
-  $(window).on(resizeEvent, debouncedRedrawChart);
+  $(window).on(resizeEvent, redrawChart);
 
   $('input[name="chartType"]').on("change", function () {
     chartType = $('input[name="chartType"]:checked').val();
