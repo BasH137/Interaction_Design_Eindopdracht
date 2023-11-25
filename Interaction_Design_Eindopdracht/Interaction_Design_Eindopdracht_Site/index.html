@@ -10,6 +10,22 @@
 </head>
 <body>
 
+  <!-- Add radio buttons for chart type -->
+  <div>
+    <input type="radio" id="barChartRadio" name="chartType" value="bar" checked>
+    <label for="barChartRadio">Overall Comparison</label>
+  
+    <input type="radio" id="scatterChart1Radio" name="chartType" value="scatter1">
+    <label for="scatterChart1Radio">Temperature vs IQ</label>
+  
+    <input type="radio" id="scatterChart2Radio" name="chartType" value="scatter2">
+    <label for="scatterChart2Radio">Education Expenditure vs IQ</label>
+  
+    <input type="radio" id="scatterChart3Radio" name="chartType" value="scatter3">
+    <label for="scatterChart3Radio">Education Expenditure vs Average Income</label>
+  </div>
+  
+
   <!-- Add a new select element for continents -->
 <div class="select-container">
   <select id="continentSelect" class="select-input" multiple="multiple">
@@ -17,6 +33,7 @@
   </select>
   <button class="compare-button js-button-filter-continent-remove" type="submit">Remove continent filter</button>
 </div>
+
 
 
   <div class="select-container">
@@ -27,7 +44,7 @@
   </div>
 
   <div class="chart-container">
-    <canvas id="myBarChart" class="chart"></canvas>
+    <canvas id="myChart" class="chart"></canvas>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

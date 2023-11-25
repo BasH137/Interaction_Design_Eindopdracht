@@ -2,6 +2,7 @@ let baseUrl = "https://localhost:7284";
 let data = [];
 let continentData = [];
 let chartInstance;
+let chartType = "bar";
 
 async function fetchData() {
   try {
@@ -17,7 +18,7 @@ async function fetchData() {
     }));
     populateContinentList();
     populateCountryList();
-    createBarChart();
+    createChart();
   } catch (error) {
     console.error("Error fetching data:", error);
   }
@@ -85,23 +86,22 @@ function populateContinentList() {
   // Trigger change to populate initial country list
   sortSelect(select[0]);
   select.val("Europe").trigger("change");
-
 }
 
 function sortSelect(selElem) {
   var tmpAry = new Array();
-  for (var i=0;i<selElem.options.length;i++) {
-      tmpAry[i] = new Array();
-      tmpAry[i][0] = selElem.options[i].text;
-      tmpAry[i][1] = selElem.options[i].value;
+  for (var i = 0; i < selElem.options.length; i++) {
+    tmpAry[i] = new Array();
+    tmpAry[i][0] = selElem.options[i].text;
+    tmpAry[i][1] = selElem.options[i].value;
   }
   tmpAry.sort();
   while (selElem.options.length > 0) {
-      selElem.options[0] = null;
+    selElem.options[0] = null;
   }
-  for (var i=0;i<tmpAry.length;i++) {
-      var op = new Option(tmpAry[i][0], tmpAry[i][1]);
-      selElem.options[i] = op;
+  for (var i = 0; i < tmpAry.length; i++) {
+    var op = new Option(tmpAry[i][0], tmpAry[i][1]);
+    selElem.options[i] = op;
   }
   return;
 }
@@ -115,10 +115,9 @@ function redrawChart() {
   console.log(selectedCountries);
   console.log(selectedContinent);
 
-  // Call the createBarChart function with selected countries and continent
-  createBarChart(selectedCountries, selectedContinent);
+  // Call the createChart function with selected countries and continent
+  createChart(selectedCountries, selectedContinent);
 }
-
 // Colors for each dataset
 const iqColor = "rgba(75, 192, 192, 0.2)";
 const iqBorderColor = "rgba(75, 192, 192, 1)";
@@ -132,43 +131,19 @@ const incomeBorderColor = "rgba(255, 205, 86, 1)";
 const temperatureColor = "rgba(169, 169, 169, 0.2)";
 const temperatureBorderColor = "rgba(169, 169, 169, 1)";
 
+const scatterColor = "rgba(255, 0, 0, 1)"; // Customize the scatter plot color
 
-// Modify the createBarChart function to accept a selected continent parameter
-function createBarChart(selectedCountries = [], selectedContinent = []) {
-  const canvas = document.getElementById("myBarChart");
-  const ctx = canvas.getContext("2d");
-
-  const filteredData = data.filter(
-    (entry) =>
-      (selectedCountries.length > 0
-        ? selectedCountries.includes(entry.country)
-        : true) &&
-      (selectedContinent.length > 0
-        ? selectedContinent.includes(entry.continent)
-        : true)
-  );
-
-  const countries = filteredData.map((entry) => entry.country);
-  const iqData = filteredData.map((entry) => entry.iq);
-  const expenditureData = filteredData.map((entry) => entry.educationExpenditure);
-  const incomeData = filteredData.map((entry) => entry.avgIncome);
-  const temperatureData = filteredData.map((entry) => entry.avgTemp);
-
-  const isMobile = window.innerWidth <= 600;
-
-  if (isMobile) {
-    canvas.style = "height: 100vh";
-  } else {
-    canvas.style = "height: 37.5rem";
-  }
-
-  // Destroy the existing chart if it exists
-  if (chartInstance) {
-    chartInstance.destroy();
-  }
-
-  // Create the new chart
-  chartInstance = new Chart(ctx, {
+// Create the bar chart
+function createBarChart(
+  ctx,
+  countries,
+  iqData,
+  expenditureData,
+  incomeData,
+  temperatureData,
+  isMobile
+) {
+  return new Chart(ctx, {
     type: "bar",
     data: {
       labels: countries,
@@ -180,7 +155,7 @@ function createBarChart(selectedCountries = [], selectedContinent = []) {
           backgroundColor: iqColor,
           borderColor: iqBorderColor,
           borderWidth: 1,
-          yAxisID: 'y',
+          yAxisID: "y",
         },
         {
           label: "Education Expenditure (per capita in thousands $)",
@@ -189,7 +164,7 @@ function createBarChart(selectedCountries = [], selectedContinent = []) {
           backgroundColor: expenditureColor,
           borderColor: expenditureBorderColor,
           borderWidth: 1,
-          yAxisID: 'y',
+          yAxisID: "y",
         },
         {
           label: "Average Income (Thousands $)",
@@ -198,18 +173,18 @@ function createBarChart(selectedCountries = [], selectedContinent = []) {
           backgroundColor: incomeColor,
           borderColor: incomeBorderColor,
           borderWidth: 1,
-          yAxisID: 'y',
+          yAxisID: "y",
         },
         {
-          type: 'line',
-          label: 'Temperature in celsius',
+          type: "line",
+          label: "Temperature in celsius",
           data: temperatureData,
-          yAxisID: 'yTemp',
+          yAxisID: "yTemp",
           backgroundColor: temperatureColor,
           borderColor: temperatureBorderColor,
           borderWidth: 1,
           hidden: true,
-        }
+        },
       ],
     },
     options: {
@@ -236,18 +211,199 @@ function createBarChart(selectedCountries = [], selectedContinent = []) {
         yTemp: {
           beginAtZero: true,
           display: false,
-        }
+        },
       },
     },
   });
 }
 
-$(document).ready(function () {
-  // Call the fetchData function
-  fetchData();
+function createChart(selectedCountries = [], selectedContinent = []) {
+  const canvas = document.getElementById("myChart");
+  const ctx = canvas.getContext("2d");
 
-  // Call the function to create the bar chart
-  createBarChart();
+  const filteredData = data.filter(
+    (entry) =>
+      (selectedCountries.length > 0
+        ? selectedCountries.includes(entry.country)
+        : true) &&
+      (selectedContinent.length > 0
+        ? selectedContinent.includes(entry.continent)
+        : true)
+  );
+
+  const countries = filteredData.map((entry) => entry.country);
+  const iqData = filteredData.map((entry) => entry.iq);
+  const expenditureData = filteredData.map(
+    (entry) => entry.educationExpenditure
+  );
+  const incomeData = filteredData.map((entry) => entry.avgIncome);
+  const temperatureData = filteredData.map((entry) => entry.avgTemp);
+
+  const isMobile = window.innerWidth <= 600;
+
+  if (isMobile) {
+    canvas.style = "height: 100vh";
+  } else {
+    canvas.style = "height: 37.5rem";
+  }
+
+  // Destroy the existing chart if it exists
+  if (chartInstance) {
+    chartInstance.destroy();
+  }
+
+  if (chartType === "bar") {
+    chartInstance = createBarChart(
+      ctx,
+      countries,
+      iqData,
+      expenditureData,
+      incomeData,
+      temperatureData,
+      isMobile
+    );
+  } else if (chartType === "scatter1") {
+    createScatterPlot1(ctx, temperatureData, iqData);
+  } else if (chartType === "scatter2") {
+    createScatterPlot2(ctx, expenditureData, iqData);
+  } else if (chartType === "scatter3") {
+    createScatterPlot3(ctx, expenditureData, incomeData);
+  }
+}
+
+// Helper functions to create scatter plots
+// Scatter Plot 1: Temperature vs IQ
+function createScatterPlot1(ctx, xData, yData) {
+  chartInstance = new Chart(ctx, {
+    type: "scatter",
+    data: {
+      datasets: [
+        {
+          label: 'Temperature vs IQ',
+          data: xData.map((value, index) => ({ x: value, y: yData[index] })),
+          backgroundColor: scatterColor,
+          pointRadius: 6,
+        }
+      ],
+    },
+    options: {
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          type: 'linear',
+          position: 'bottom',
+          title: {
+            display: true,
+            text: 'Temperature (°C)', 
+          },
+        },
+        y: {
+          type: 'linear',
+          position: 'left',
+          title: {
+            display: true,
+            text: 'IQ', 
+          },
+        }
+      }
+    }
+  });
+}
+
+// Scatter Plot 2: Education Expenditure vs IQ
+function createScatterPlot2(ctx, xData, yData) {
+  chartInstance = new Chart(ctx, {
+    type: "scatter",
+    data: {
+      datasets: [
+        {
+          label: 'Education Expenditure vs IQ',
+          data: xData.map((value, index) => ({ x: value, y: yData[index] })),
+          backgroundColor: scatterColor,
+          pointRadius: 6,
+        }
+      ],
+    },
+    options: {
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          type: 'linear',
+          position: 'bottom',
+          title: {
+            display: true,
+            text: 'Education Expenditure (per capita in thousands $)',
+          },
+        },
+        y: {
+          type: 'linear',
+          position: 'left',
+          title: {
+            display: true,
+            text: 'IQ', 
+          },
+        }
+      }
+    }
+  });
+}
+
+// Scatter Plot 3: Education Expenditure vs Average Income
+function createScatterPlot3(ctx, xData, yData) {
+  chartInstance = new Chart(ctx, {
+    type: "scatter",
+    data: {
+      datasets: [
+        {
+          label: 'Education Expenditure vs Average Income',
+          data: xData.map((value, index) => ({ x: value, y: yData[index] })),
+          backgroundColor: scatterColor,
+          pointRadius: 6,
+        }
+      ],
+    },
+    options: {
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          type: 'linear',
+          position: 'bottom',
+          title: {
+            display: true,
+            text: 'Education Expenditure (per capita in thousands $)', 
+          },
+        },
+        y: {
+          type: 'linear',
+          position: 'left',
+          title: {
+            display: true,
+            text: 'Average Income (Thousands $)', 
+          },
+        }
+      }
+    }
+  });
+}
+
+
+// Modify the redrawChart function to pass the selected chart type
+function redrawChart() {
+  const selectedCountries = $("#countrySelect").val();
+  const selectedContinent = $("#continentSelect").val();
+
+  console.log(selectedCountries);
+  console.log(selectedContinent);
+
+  // Call the createChart function with selected countries, continent, and chart type
+  createChart(selectedCountries, selectedContinent);
+}
+
+$(document).ready(function () {
+  $('input[name="chartType"]').on("change", function () {
+    chartType = $('input[name="chartType"]:checked').val();
+    redrawChart();
+  });
 
   // Add event listener for removing country filter button
   let countryRemoveFilterButton = $(".js-button-filter-country-remove");
@@ -272,6 +428,9 @@ $(document).ready(function () {
   $("#continentSelect").on("change", function () {
     redrawChart();
   });
+
+  // Call the fetchData function
+  fetchData();
 });
 
 $(window).on("resize", redrawChart);
