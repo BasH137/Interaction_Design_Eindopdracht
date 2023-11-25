@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Interaction_Design_Eindopdracht_Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f1ed29eebf485ea3908ffbbc56874a5409f677d4")]
 [assembly: System.Reflection.AssemblyProductAttribute("Interaction_Design_Eindopdracht_Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Interaction_Design_Eindopdracht_Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -13,7 +13,6 @@ async function fetchData() {
       educationExpenditure: entry.educationExpenditure,
       avgIncome: entry.avgIncome,
       continent: entry.continent,
-      avgTemp: entry.avgTemp,
     }));
     populateContinentList();
     populateCountryList();
@@ -119,20 +118,6 @@ function redrawChart() {
   createBarChart(selectedCountries, selectedContinent);
 }
 
-// Colors for each dataset
-const iqColor = "rgba(75, 192, 192, 0.2)";
-const iqBorderColor = "rgba(75, 192, 192, 1)";
-
-const expenditureColor = "rgba(255, 99, 132, 0.2)";
-const expenditureBorderColor = "rgba(255, 99, 132, 1)";
-
-const incomeColor = "rgba(255, 205, 86, 0.2)";
-const incomeBorderColor = "rgba(255, 205, 86, 1)";
-
-const temperatureColor = "rgba(169, 169, 169, 0.2)";
-const temperatureBorderColor = "rgba(169, 169, 169, 1)";
-
-
 // Modify the createBarChart function to accept a selected continent parameter
 function createBarChart(selectedCountries = [], selectedContinent = []) {
   const canvas = document.getElementById("myBarChart");
@@ -150,9 +135,10 @@ function createBarChart(selectedCountries = [], selectedContinent = []) {
 
   const countries = filteredData.map((entry) => entry.country);
   const iqData = filteredData.map((entry) => entry.iq);
-  const expenditureData = filteredData.map((entry) => entry.educationExpenditure);
+  const expenditureData = filteredData.map(
+    (entry) => entry.educationExpenditure
+  );
   const incomeData = filteredData.map((entry) => entry.avgIncome);
-  const temperatureData = filteredData.map((entry) => entry.avgTemp);
 
   const isMobile = window.innerWidth <= 600;
 
@@ -175,41 +161,25 @@ function createBarChart(selectedCountries = [], selectedContinent = []) {
       datasets: [
         {
           label: "Average IQ",
-          type: "bar",
           data: iqData,
-          backgroundColor: iqColor,
-          borderColor: iqBorderColor,
+          backgroundColor: "rgba(75, 192, 192, 0.2)",
+          borderColor: "rgba(75, 192, 192, 1)",
           borderWidth: 1,
-          yAxisID: 'y',
         },
         {
           label: "Education Expenditure (per capita in thousands $)",
-          type: "bar",
           data: expenditureData,
-          backgroundColor: expenditureColor,
-          borderColor: expenditureBorderColor,
+          backgroundColor: "rgba(255, 99, 132, 0.2)",
+          borderColor: "rgba(255, 99, 132, 1)",
           borderWidth: 1,
-          yAxisID: 'y',
         },
         {
           label: "Average Income (Thousands $)",
-          type: "bar",
           data: incomeData,
-          backgroundColor: incomeColor,
-          borderColor: incomeBorderColor,
+          backgroundColor: "rgba(255, 205, 86, 0.2)",
+          borderColor: "rgba(255, 205, 86, 1)",
           borderWidth: 1,
-          yAxisID: 'y',
         },
-        {
-          type: 'line',
-          label: 'Temperature in celsius',
-          data: temperatureData,
-          yAxisID: 'yTemp',
-          backgroundColor: temperatureColor,
-          borderColor: temperatureBorderColor,
-          borderWidth: 1,
-          hidden: true,
-        }
       ],
     },
     options: {
@@ -233,10 +203,6 @@ function createBarChart(selectedCountries = [], selectedContinent = []) {
         y: {
           beginAtZero: true,
         },
-        yTemp: {
-          beginAtZero: true,
-          display: false,
-        }
       },
     },
   });

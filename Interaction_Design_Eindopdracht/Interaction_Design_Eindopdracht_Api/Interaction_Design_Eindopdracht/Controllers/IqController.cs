@@ -112,8 +112,9 @@ namespace Interaction_Design_Eindopdracht.Controllers
                 // Update values in the list
                 //var newData = countryDataList.Select(c =>
                 //{
-                //    c.EducationExpenditure = c.EducationExpenditure / 1000;
-                //    c.AvgIncome = c.AvgIncome / 1000;
+                //    //c.EducationExpenditure = c.EducationExpenditure / 1000;
+                //    //c.AvgIncome = c.AvgIncome / 1000;
+                //    c.AvgTemp = c.AvgTemp / 10;
                 //    return c;
                 //}).ToList();
 
