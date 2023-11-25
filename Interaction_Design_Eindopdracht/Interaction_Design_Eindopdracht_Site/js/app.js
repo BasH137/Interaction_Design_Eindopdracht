@@ -6,7 +6,8 @@ let chartType = "bar";
 
 async function fetchData() {
   try {
-    const response = await fetch(`${baseUrl}/api/Iq/money-divided-by-1000`);
+    // const response = await fetch(`${baseUrl}/api/Iq/money-divided-by-1000`);
+    const response = await fetch("./data/UpdatedData.json");
     const result = await response.json();
     data = result.map((entry) => ({
       country: entry.country,
