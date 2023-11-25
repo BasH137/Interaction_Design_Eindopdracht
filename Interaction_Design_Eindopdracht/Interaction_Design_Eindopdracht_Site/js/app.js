@@ -434,4 +434,4 @@ $(document).ready(function () {
   fetchData();
 });
 
-$(window).on("resize", redrawChart);
+$(window).on("resize", redrawChart());
