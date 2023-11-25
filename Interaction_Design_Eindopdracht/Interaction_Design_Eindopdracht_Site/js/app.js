@@ -86,7 +86,7 @@ function populateContinentList() {
 
   // Trigger change to populate initial country list
   sortSelect(select[0]);
-  select.val("Europe").trigger("change");
+  // select.val("Europe").trigger("change");
 }
 
 function sortSelect(selElem) {
@@ -228,7 +228,6 @@ function createBarChart(
           backgroundColor: incomeColor,
           borderColor: incomeBorderColor,
           borderWidth: 1,
-          yAxisID: "y",
         },
         {
           label: "Temperature in Celsius",
@@ -245,8 +244,8 @@ function createBarChart(
       plugins: {
         legend: {
           display: true,
-          position: isMobile ? "top" : "top",
-          align: "start",
+          position: "top",
+          align: "center",
           textDirection: "ltr",
           labels: {
             color: "rgb(255, 99, 132)",
@@ -254,6 +253,7 @@ function createBarChart(
         },
       },
       maintainAspectRatio: false,
+      // indexAxis: isMobile ? "y" : "x",
       indexAxis: isMobile ? "y" : "x",
       scales: {
         x: {
