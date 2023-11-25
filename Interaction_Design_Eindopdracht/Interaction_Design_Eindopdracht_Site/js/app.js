@@ -445,7 +445,7 @@ $(document).ready(function () {
   const isMobile = window.outerWidth <= 600;
   const resizeEvent = isMobile ? "orientationchange" : "resize";
 
-  redrawChart();
+  redrawChart(); //this is needed to fix the bug where media query is not working even tho fetch data calls redrawChart
 
   $(window).on(resizeEvent, redrawChart);
 
