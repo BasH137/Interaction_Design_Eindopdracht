@@ -134,7 +134,6 @@ const temperatureBorderColor = "rgba(169, 169, 169, 1)";
 
 const scatterColor = "rgba(255, 0, 0, 1)"; // Customize the scatter plot color
 
-
 function createChart(selectedCountries = [], selectedContinent = []) {
   const canvas = document.getElementById("myChart");
   const ctx = canvas.getContext("2d");
@@ -181,11 +180,11 @@ function createChart(selectedCountries = [], selectedContinent = []) {
       isMobile
     );
   } else if (chartType === "scatter1") {
-    createScatterPlot1(ctx, temperatureData, iqData,isMobile);
+    createScatterPlot1(ctx, temperatureData, iqData, isMobile);
   } else if (chartType === "scatter2") {
-    createScatterPlot2(ctx, expenditureData, iqData,isMobile);
+    createScatterPlot2(ctx, expenditureData, iqData, isMobile);
   } else if (chartType === "scatter3") {
-    createScatterPlot3(ctx, expenditureData, incomeData,isMobile);
+    createScatterPlot3(ctx, expenditureData, incomeData, isMobile);
   }
 }
 
@@ -247,7 +246,7 @@ function createBarChart(
       plugins: {
         legend: {
           display: true,
-          position: isMobile ? "top" : "top",  // You can customize the legend position as needed
+          position: isMobile ? "top" : "top", // You can customize the legend position as needed
           align: "start",
           textDirection: "ltr",
           labels: {
@@ -260,7 +259,7 @@ function createBarChart(
       scales: {
         x: {
           beginAtZero: true,
-          position: isMobile ? 'top' : 'bottom',  // Adjust the x-axis position based on mobile
+          position: isMobile ? "top" : "bottom", // Adjust the x-axis position based on mobile
         },
         y: {
           beginAtZero: true,
@@ -278,146 +277,161 @@ function createBarChart(
 // Scatter Plot 1: Temperature vs IQ
 function createScatterPlot1(ctx, xData, yData, isMobile) {
   // Filter out 0 values
-  const filteredData = xData.reduce((result, value, index) => {
-    if (value !== 0 && yData[index] !== 0) {
-      result.x.push(value);
-      result.y.push(yData[index]);
-    }
-    return result;
-  }, { x: [], y: [] });
+  const filteredData = xData.reduce(
+    (result, value, index) => {
+      if (value !== 0 && yData[index] !== 0) {
+        result.x.push(value);
+        result.y.push(yData[index]);
+      }
+      return result;
+    },
+    { x: [], y: [] }
+  );
 
   chartInstance = new Chart(ctx, {
     type: "scatter",
     data: {
       datasets: [
         {
-          label: 'Temperature vs IQ',
-          data: filteredData.x.map((value, index) => ({ x: value, y: filteredData.y[index] })),
+          label: "Temperature vs IQ",
+          data: filteredData.x.map((value, index) => ({
+            x: value,
+            y: filteredData.y[index],
+          })),
           backgroundColor: scatterColor,
           pointRadius: 6,
-        }
+        },
       ],
     },
     options: {
       maintainAspectRatio: false,
       scales: {
         x: {
-          type: 'linear',
-          position: isMobile ? 'top' : 'bottom',
+          type: "linear",
+          position: isMobile ? "top" : "bottom",
           title: {
             display: true,
-            text: 'average temperature (°C)', 
+            text: "average temperature (°C)",
           },
         },
         y: {
-          type: 'linear',
-          position: 'left',
+          type: "linear",
+          position: "left",
           title: {
             display: true,
-            text: 'IQ', 
+            text: "IQ",
           },
-        }
-      }
-    }
+        },
+      },
+    },
   });
 }
 
 // Scatter Plot 2: Education Expenditure vs IQ
 function createScatterPlot2(ctx, xData, yData, isMobile) {
   // Filter out 0 values
-  const filteredData = xData.reduce((result, value, index) => {
-    if (value !== 0 && yData[index] !== 0) {
-      result.x.push(value);
-      result.y.push(yData[index]);
-    }
-    return result;
-  }, { x: [], y: [] });
+  const filteredData = xData.reduce(
+    (result, value, index) => {
+      if (value !== 0 && yData[index] !== 0) {
+        result.x.push(value);
+        result.y.push(yData[index]);
+      }
+      return result;
+    },
+    { x: [], y: [] }
+  );
 
   chartInstance = new Chart(ctx, {
     type: "scatter",
     data: {
       datasets: [
         {
-          label: 'Education Expenditure vs IQ',
-          data: filteredData.x.map((value, index) => ({ x: value, y: filteredData.y[index] })),
+          label: "Education Expenditure vs IQ",
+          data: filteredData.x.map((value, index) => ({
+            x: value,
+            y: filteredData.y[index],
+          })),
           backgroundColor: scatterColor,
           pointRadius: 6,
-        }
+        },
       ],
     },
     options: {
       maintainAspectRatio: false,
       scales: {
         x: {
-          type: 'linear',
-          position: isMobile ? 'top' : 'bottom',
+          type: "linear",
+          position: isMobile ? "top" : "bottom",
           title: {
             display: true,
-            text: 'Education Expenditure (per capita in thousands $)',
+            text: "Education Expenditure (per capita in thousands $)",
           },
         },
         y: {
-          type: 'linear',
-          position: 'left',
+          type: "linear",
+          position: "left",
           title: {
             display: true,
-            text: 'IQ', 
+            text: "IQ",
           },
-        }
-      }
-    }
+        },
+      },
+    },
   });
 }
 
 // Scatter Plot 3: Education Expenditure vs Average Income
 function createScatterPlot3(ctx, xData, yData, isMobile) {
   // Filter out 0 values
-  const filteredData = xData.reduce((result, value, index) => {
-    if (value !== 0 && yData[index] !== 0) {
-      result.x.push(value);
-      result.y.push(yData[index]);
-    }
-    return result;
-  }, { x: [], y: [] });
+  const filteredData = xData.reduce(
+    (result, value, index) => {
+      if (value !== 0 && yData[index] !== 0) {
+        result.x.push(value);
+        result.y.push(yData[index]);
+      }
+      return result;
+    },
+    { x: [], y: [] }
+  );
 
   chartInstance = new Chart(ctx, {
     type: "scatter",
     data: {
       datasets: [
         {
-          label: 'Education Expenditure vs Average Income',
-          data: filteredData.x.map((value, index) => ({ x: value, y: filteredData.y[index] })),
+          label: "Education Expenditure vs Average Income",
+          data: filteredData.x.map((value, index) => ({
+            x: value,
+            y: filteredData.y[index],
+          })),
           backgroundColor: scatterColor,
           pointRadius: 6,
-        }
+        },
       ],
     },
     options: {
       maintainAspectRatio: false,
       scales: {
         x: {
-          type: 'linear',
-          position: isMobile ? 'top' : 'bottom',
+          type: "linear",
+          position: isMobile ? "top" : "bottom",
           title: {
             display: true,
-            text: 'Education Expenditure (per capita in thousands $)', 
+            text: "Education Expenditure (per capita in thousands $)",
           },
         },
         y: {
-          type: 'linear',
-          position: 'left',
+          type: "linear",
+          position: "left",
           title: {
             display: true,
-            text: 'Average Income (Thousands $)', 
+            text: "Average Income (Thousands $)",
           },
-        }
-      }
-    }
+        },
+      },
+    },
   });
 }
-
-
-
 
 // Modify the redrawChart function to pass the selected chart type
 function redrawChart() {
@@ -465,4 +479,27 @@ $(document).ready(function () {
   fetchData();
 });
 
-$(window).on("resize", redrawChart);
+// $(window).on("resize", redrawChart);
+
+// Add a debounce function => scrolling on mobile triggered on resize
+function debounce(func, wait, immediate) {
+  let timeout;
+  return function () {
+    const context = this;
+    const args = arguments;
+    const later = function () {
+      timeout = null;
+      if (!immediate) func.apply(context, args);
+    };
+    const callNow = immediate && !timeout;
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+    if (callNow) func.apply(context, args);
+  };
+}
+
+
+// Modify the redrawChart function to use the debounced version
+const debouncedRedrawChart = debounce(redrawChart, 250); 
+
+$(window).on("resize", debouncedRedrawChart);
