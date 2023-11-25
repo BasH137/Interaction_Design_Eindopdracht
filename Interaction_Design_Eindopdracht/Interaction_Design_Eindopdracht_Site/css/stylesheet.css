@@ -1,84 +1,92 @@
 :root {
-    --primary-color: #3498db; /* Adjust the primary color as needed */
-    --button-bg: #2ecc71; /* Adjust the button background color as needed */
-  }
+  --primary-color: #3498db;
+  --button-bg: #2ecc71;
+  --radio-indicator-size: 1.25rem;
+  --delete-red: red;
+}
 
-  html{
-    display: grid;
-    /* place-items: center; */
-  }
-  
-  body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    grid-template-rows: auto 1fr;
-  }
-  
-  .select-container {
-    margin-top: 1rem;
-    width: 100%;
-    display: flex;
-   justify-content: center;
-   align-items: center;
-   gap: 1rem;
-  }
-  
-  .select-input {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    margin-bottom: 10px;
-    box-sizing: border-box;
-  }
-  
-  .compare-button:hover {
-    background-color: darken(var(--button-bg), 10%);
-  }
-  
-  .chart-container {
-    width: 100%;
-  }
-  
-  .chart {
-    width: 100%;
-    height: 400px; /* Adjust the height as needed */
-  }
-  
-
-
-/* CSS */
-.compare-button {
-  align-items: center;
-  appearance: button;
-  background-color: #0276FF;
-  border-radius: 8px;
-  border-style: none;
-  box-shadow: rgba(255, 255, 255, 0.26) 0 1px 2px inset;
-  box-sizing: border-box;
-  color: #fff;
-  cursor: pointer;
+.radio-group {
   display: flex;
-  flex-direction: row;
-  flex-shrink: 0;
-  font-family: "RM Neue",sans-serif;
-  font-size: 100%;
-  line-height: 1.15;
+  justify-content: center;
+}
+
+.radio-input {
+  display: none;
+}
+
+.radio-label {
+  position: relative;
+  padding-left: calc(var(--radio-indicator-size) + 0.625rem);
+  cursor: pointer;
+  display: inline-block;
+}
+
+.radio-input:checked + .radio-label {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.radio-input:checked + .radio-label {
+  color: var(--primary-color);
+}
+
+html {
+  display: grid;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
   margin: 0;
-  padding: 10px 21px;
-  text-align: center;
-  text-transform: none;
-  transition: color .13s ease-in-out,background .13s ease-in-out,opacity .13s ease-in-out,box-shadow .13s ease-in-out;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
+  padding: 0;
+  display: grid;
+  grid-template-rows: auto 1fr;
 }
 
-.compare-button:active {
-  background-color: #006AE8;
+.select-container {
+  margin-top: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 }
 
-.compare-button:hover {
-  background-color: #1C84FF;
+.select-input {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  box-sizing: border-box;
+}
+
+.btn-delete {
+  background-color: #fff;
+  border: 1px solid var(--delete-red);
+  color: var(--delete-red);
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.3125rem;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, border 0.3s;
+}
+
+.btn-delete:hover {
+  background-color: var(--delete-red);
+  color: #fff;
+  border: 1px solid var(--delete-red);
+}
+
+.btn-delete:active {
+  background-color: var(--delete-red);
+  color: #fff;
+  border: 1px solid var(--delete-red);
+}
+
+.btn-delete svg {
+  fill: var(--delete-red);
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.btn-delete:hover svg {
+  fill: #fff;
 }
