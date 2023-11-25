@@ -231,10 +231,9 @@ function createBarChart(
           yAxisID: "y",
         },
         {
-          type: "line",
-          label: "Temperature in celsius",
+          label: "Temperature in Celsius",
+          type: "bar",
           data: temperatureData,
-          yAxisID: "yTemp",
           backgroundColor: temperatureColor,
           borderColor: temperatureBorderColor,
           borderWidth: 1,
@@ -246,7 +245,7 @@ function createBarChart(
       plugins: {
         legend: {
           display: true,
-          position: isMobile ? "top" : "top", // You can customize the legend position as needed
+          position: isMobile ? "top" : "top",
           align: "start",
           textDirection: "ltr",
           labels: {
@@ -259,19 +258,16 @@ function createBarChart(
       scales: {
         x: {
           beginAtZero: true,
-          position: isMobile ? "top" : "bottom", // Adjust the x-axis position based on mobile
+          position: isMobile ? "top" : "bottom",
         },
         y: {
           beginAtZero: true,
-        },
-        yTemp: {
-          beginAtZero: true,
-          display: false,
         },
       },
     },
   });
 }
+
 
 // Helper functions to create scatter plots
 // Scatter Plot 1: Temperature vs IQ
