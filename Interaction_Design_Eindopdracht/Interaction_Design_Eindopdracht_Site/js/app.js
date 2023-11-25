@@ -446,6 +446,11 @@ function redrawChart() {
 }
 
 $(document).ready(function () {
+  const isMobile = window.outerWidth <= 600;
+  const resizeEvent = isMobile ? "orientationchange" : "resize";
+
+  $(window).on(resizeEvent, debouncedRedrawChart);
+
   $('input[name="chartType"]').on("change", function () {
     chartType = $('input[name="chartType"]:checked').val();
     redrawChart();
@@ -478,28 +483,3 @@ $(document).ready(function () {
   // Call the fetchData function
   fetchData();
 });
-
-// $(window).on("resize", redrawChart);
-
-// Add a debounce function => scrolling on mobile triggered on resize
-function debounce(func, wait, immediate) {
-  let timeout;
-  return function () {
-    const context = this;
-    const args = arguments;
-    const later = function () {
-      timeout = null;
-      if (!immediate) func.apply(context, args);
-    };
-    const callNow = immediate && !timeout;
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-    if (callNow) func.apply(context, args);
-  };
-}
-
-
-// Modify the redrawChart function to use the debounced version
-const debouncedRedrawChart = debounce(redrawChart, 250); 
-
-$(window).on("resize", debouncedRedrawChart);
