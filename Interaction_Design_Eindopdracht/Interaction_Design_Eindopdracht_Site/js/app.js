@@ -19,7 +19,7 @@ async function fetchData() {
     }));
     populateContinentList();
     populateCountryList();
-    createChart();
+    redrawChart();
   } catch (error) {
     console.error("Error fetching data:", error);
   }
