@@ -1,0 +1,974 @@
+[
+  {
+    "rank": 1,
+    "country": "Hong Kong",
+    "iq": 106,
+    "educationExpenditure": 1.283,
+    "avgIncome": 35.304,
+    "avgTemp": 26.2,
+    "continent": "Asia"
+  },
+  {
+    "rank": 2,
+    "country": "Japan",
+    "iq": 106,
+    "educationExpenditure": 1.34,
+    "avgIncome": 40.964,
+    "avgTemp": 19.2,
+    "continent": "Asia"
+  },
+  {
+    "rank": 3,
+    "country": "Singapore",
+    "iq": 106,
+    "educationExpenditure": 1.428,
+    "avgIncome": 41.1,
+    "avgTemp": 31.5,
+    "continent": "Asia"
+  },
+  {
+    "rank": 4,
+    "country": "Taiwan",
+    "iq": 106,
+    "educationExpenditure": 0,
+    "avgIncome": 0,
+    "avgTemp": 26.9,
+    "continent": "Asia"
+  },
+  {
+    "rank": 5,
+    "country": "China",
+    "iq": 104,
+    "educationExpenditure": 0.183,
+    "avgIncome": 4.654,
+    "avgTemp": 19.1,
+    "continent": "Asia"
+  },
+  {
+    "rank": 6,
+    "country": "South Korea",
+    "iq": 103,
+    "educationExpenditure": 1.024,
+    "avgIncome": 22.805,
+    "avgTemp": 18.2,
+    "continent": "Asia"
+  },
+  {
+    "rank": 7,
+    "country": "Netherlands",
+    "iq": 101,
+    "educationExpenditure": 2.386,
+    "avgIncome": 45.337,
+    "avgTemp": 14.4,
+    "continent": "Europe"
+  },
+  {
+    "rank": 8,
+    "country": "Finland",
+    "iq": 101,
+    "educationExpenditure": 2.725,
+    "avgIncome": 42.706,
+    "avgTemp": 8.2,
+    "continent": "Europe"
+  },
+  {
+    "rank": 9,
+    "country": "Canada",
+    "iq": 100,
+    "educationExpenditure": 2.052,
+    "avgIncome": 40.207,
+    "avgTemp": 7.4,
+    "continent": "North America"
+  },
+  {
+    "rank": 10,
+    "country": "North Korea",
+    "iq": 100,
+    "educationExpenditure": 0,
+    "avgIncome": 0,
+    "avgTemp": 15.3,
+    "continent": "Asia"
+  },
+  {
+    "rank": 11,
+    "country": "Luxembourg",
+    "iq": 100,
+    "educationExpenditure": 3.665,
+    "avgIncome": 71.296,
+    "avgTemp": 14.7,
+    "continent": "Europe"
+  },
+  {
+    "rank": 12,
+    "country": "Macao",
+    "iq": 100,
+    "educationExpenditure": 1.448,
+    "avgIncome": 44.072,
+    "avgTemp": 26.1,
+    "continent": "Asia"
+  },
+  {
+    "rank": 13,
+    "country": "Germany",
+    "iq": 100,
+    "educationExpenditure": 1.883,
+    "avgIncome": 39.911,
+    "avgTemp": 13.8,
+    "continent": "Europe"
+  },
+  {
+    "rank": 14,
+    "country": "Switzerland",
+    "iq": 100,
+    "educationExpenditure": 3.55,
+    "avgIncome": 70.399,
+    "avgTemp": 15.2,
+    "continent": "Europe"
+  },
+  {
+    "rank": 15,
+    "country": "Estonia",
+    "iq": 100,
+    "educationExpenditure": 0.749,
+    "avgIncome": 13.77,
+    "avgTemp": 10.1,
+    "continent": "Europe"
+  },
+  {
+    "rank": 16,
+    "country": "Australia",
+    "iq": 99,
+    "educationExpenditure": 2.343,
+    "avgIncome": 42.948,
+    "avgTemp": 24.3,
+    "continent": "Oceania"
+  },
+  {
+    "rank": 17,
+    "country": "United Kingdom",
+    "iq": 99,
+    "educationExpenditure": 2.076,
+    "avgIncome": 40.698,
+    "avgTemp": 12.9,
+    "continent": "Europe"
+  },
+  {
+    "rank": 18,
+    "country": "Greenland",
+    "iq": 99,
+    "educationExpenditure": 4.518,
+    "avgIncome": 24.486,
+    "avgTemp": 0.4,
+    "continent": "North America"
+  },
+  {
+    "rank": 19,
+    "country": "Iceland",
+    "iq": 99,
+    "educationExpenditure": 3.812,
+    "avgIncome": 47.106,
+    "avgTemp": 8.1,
+    "continent": "Europe"
+  },
+  {
+    "rank": 20,
+    "country": "Austria",
+    "iq": 99,
+    "educationExpenditure": 2.341,
+    "avgIncome": 42.635,
+    "avgTemp": 13.2,
+    "continent": "Europe"
+  },
+  {
+    "rank": 21,
+    "country": "Hungary",
+    "iq": 99,
+    "educationExpenditure": 0.585,
+    "avgIncome": 11.391,
+    "avgTemp": 16.6,
+    "continent": "Europe"
+  },
+  {
+    "rank": 22,
+    "country": "New Zealand",
+    "iq": 99,
+    "educationExpenditure": 2.083,
+    "avgIncome": 30.141,
+    "avgTemp": 17.4,
+    "continent": "Oceania"
+  },
+  {
+    "rank": 23,
+    "country": "Belgium",
+    "iq": 98,
+    "educationExpenditure": 2.507,
+    "avgIncome": 40.526,
+    "avgTemp": 14.8,
+    "continent": "Europe"
+  },
+  {
+    "rank": 24,
+    "country": "Norway",
+    "iq": 98,
+    "educationExpenditure": 5.436,
+    "avgIncome": 75.13,
+    "avgTemp": 9.1,
+    "continent": "Europe"
+  },
+  {
+    "rank": 25,
+    "country": "Sweden",
+    "iq": 98,
+    "educationExpenditure": 3.419,
+    "avgIncome": 49.535,
+    "avgTemp": 9.9,
+    "continent": "Europe"
+  },
+  {
+    "rank": 26,
+    "country": "Denmark",
+    "iq": 98,
+    "educationExpenditure": 4.133,
+    "avgIncome": 53.149,
+    "avgTemp": 12.5,
+    "continent": "Europe"
+  },
+  {
+    "rank": 27,
+    "country": "Cambodia",
+    "iq": 97,
+    "educationExpenditure": 0.016,
+    "avgIncome": 0.776,
+    "avgTemp": 33.1,
+    "continent": "Asia"
+  },
+  {
+    "rank": 28,
+    "country": "France",
+    "iq": 97,
+    "educationExpenditure": 2.042,
+    "avgIncome": 37.61,
+    "avgTemp": 16.8,
+    "continent": "Europe"
+  },
+  {
+    "rank": 29,
+    "country": "United States",
+    "iq": 97,
+    "educationExpenditure": 2.608,
+    "avgIncome": 49.883,
+    "avgTemp": 18.8,
+    "continent": "North America"
+  },
+  {
+    "rank": 30,
+    "country": "Poland",
+    "iq": 96,
+    "educationExpenditure": 0.545,
+    "avgIncome": 10.505,
+    "avgTemp": 13.4,
+    "continent": "Europe"
+  },
+  {
+    "rank": 31,
+    "country": "Czechia",
+    "iq": 96,
+    "educationExpenditure": 0.712,
+    "avgIncome": 15.552,
+    "avgTemp": 12.8,
+    "continent": "Europe"
+  },
+  {
+    "rank": 32,
+    "country": "Russia",
+    "iq": 96,
+    "educationExpenditure": 0.338,
+    "avgIncome": 8.241,
+    "avgTemp": 9.5,
+    "continent": "Europe"
+  },
+  {
+    "rank": 33,
+    "country": "Spain",
+    "iq": 95,
+    "educationExpenditure": 1.176,
+    "avgIncome": 26.463,
+    "avgTemp": 21.1,
+    "continent": "Europe"
+  },
+  {
+    "rank": 34,
+    "country": "Ireland",
+    "iq": 95,
+    "educationExpenditure": 2.5,
+    "avgIncome": 43.903,
+    "avgTemp": 13.2,
+    "continent": "Europe"
+  },
+  {
+    "rank": 35,
+    "country": "Italy",
+    "iq": 95,
+    "educationExpenditure": 1.38,
+    "avgIncome": 32.104,
+    "avgTemp": 17.8,
+    "continent": "Europe"
+  },
+  {
+    "rank": 36,
+    "country": "Croatia",
+    "iq": 95,
+    "educationExpenditure": 0.505,
+    "avgIncome": 11.642,
+    "avgTemp": 18.1,
+    "continent": "Europe"
+  },
+  {
+    "rank": 37,
+    "country": "Lithuania",
+    "iq": 95,
+    "educationExpenditure": 0.55,
+    "avgIncome": 11.33,
+    "avgTemp": 11.6,
+    "continent": "Europe"
+  },
+  {
+    "rank": 38,
+    "country": "Israel",
+    "iq": 93,
+    "educationExpenditure": 1.811,
+    "avgIncome": 29.009,
+    "avgTemp": 25.4,
+    "continent": "Asia"
+  },
+  {
+    "rank": 39,
+    "country": "Mongolia",
+    "iq": 93,
+    "educationExpenditure": 0.153,
+    "avgIncome": 2.241,
+    "avgTemp": 8.1,
+    "continent": "Asia"
+  },
+  {
+    "rank": 40,
+    "country": "Portugal",
+    "iq": 93,
+    "educationExpenditure": 1.005,
+    "avgIncome": 19.253,
+    "avgTemp": 21.5,
+    "continent": "Europe"
+  },
+  {
+    "rank": 41,
+    "country": "Bermuda",
+    "iq": 92,
+    "educationExpenditure": 1.748,
+    "avgIncome": 108.349,
+    "avgTemp": 24.6,
+    "continent": "North America"
+  },
+  {
+    "rank": 42,
+    "country": "Bulgaria",
+    "iq": 91,
+    "educationExpenditure": 0.224,
+    "avgIncome": 5.703,
+    "avgTemp": 18.1,
+    "continent": "Europe"
+  },
+  {
+    "rank": 43,
+    "country": "Greece",
+    "iq": 91,
+    "educationExpenditure": 0.781,
+    "avgIncome": 21.101,
+    "avgTemp": 22.3,
+    "continent": "Europe"
+  },
+  {
+    "rank": 44,
+    "country": "Ukraine",
+    "iq": 91,
+    "educationExpenditure": 0.143,
+    "avgIncome": 2.375,
+    "avgTemp": 14.6,
+    "continent": "Europe"
+  },
+  {
+    "rank": 45,
+    "country": "Vietnam",
+    "iq": 91,
+    "educationExpenditure": 0.076,
+    "avgIncome": 1.446,
+    "avgTemp": 28.9,
+    "continent": "Asia"
+  },
+  {
+    "rank": 46,
+    "country": "Kazakhstan",
+    "iq": 89,
+    "educationExpenditure": 0.225,
+    "avgIncome": 6.38,
+    "avgTemp": 13.5,
+    "continent": "Asia"
+  },
+  {
+    "rank": 47,
+    "country": "Malaysia",
+    "iq": 89,
+    "educationExpenditure": 0.45,
+    "avgIncome": 7.665,
+    "avgTemp": 3.2,
+    "continent": "Asia"
+  },
+  {
+    "rank": 48,
+    "country": "Myanmar",
+    "iq": 89,
+    "educationExpenditure": 0.014,
+    "avgIncome": 0.66,
+    "avgTemp": 32.2,
+    "continent": "Asia"
+  },
+  {
+    "rank": 49,
+    "country": "Thailand",
+    "iq": 89,
+    "educationExpenditure": 0.182,
+    "avgIncome": 4.26,
+    "avgTemp": 3.3,
+    "continent": "Asia"
+  },
+  {
+    "rank": 50,
+    "country": "Serbia",
+    "iq": 89,
+    "educationExpenditure": 0.208,
+    "avgIncome": 4.876,
+    "avgTemp": 18.3,
+    "continent": "Europe"
+  },
+  {
+    "rank": 51,
+    "country": "Brunei",
+    "iq": 88,
+    "educationExpenditure": 1.02,
+    "avgIncome": 29.737,
+    "avgTemp": 31.7,
+    "continent": "Asia"
+  },
+  {
+    "rank": 52,
+    "country": "Chile",
+    "iq": 88,
+    "educationExpenditure": 0.482,
+    "avgIncome": 10.195,
+    "avgTemp": 18.5,
+    "continent": "South America"
+  },
+  {
+    "rank": 53,
+    "country": "Costa Rica",
+    "iq": 88,
+    "educationExpenditure": 0.487,
+    "avgIncome": 7.48,
+    "avgTemp": 28.6,
+    "continent": "North America"
+  },
+  {
+    "rank": 54,
+    "country": "Iraq",
+    "iq": 88,
+    "educationExpenditure": 0.193,
+    "avgIncome": 3.757,
+    "avgTemp": 32.3,
+    "continent": "Asia"
+  },
+  {
+    "rank": 55,
+    "country": "Romania",
+    "iq": 88,
+    "educationExpenditure": 0.249,
+    "avgIncome": 7.109,
+    "avgTemp": 1.6,
+    "continent": "Europe"
+  },
+  {
+    "rank": 56,
+    "country": "Argentina",
+    "iq": 87,
+    "educationExpenditure": 0.454,
+    "avgIncome": 8.795,
+    "avgTemp": 24.4,
+    "continent": "South America"
+  },
+  {
+    "rank": 57,
+    "country": "Mauritius",
+    "iq": 87,
+    "educationExpenditure": 0.31,
+    "avgIncome": 7.812,
+    "avgTemp": 26.8,
+    "continent": "Africa"
+  },
+  {
+    "rank": 58,
+    "country": "Mexico",
+    "iq": 87,
+    "educationExpenditure": 0.437,
+    "avgIncome": 8.845,
+    "avgTemp": 29.8,
+    "continent": "North America"
+  },
+  {
+    "rank": 59,
+    "country": "Turkey",
+    "iq": 87,
+    "educationExpenditure": 0.334,
+    "avgIncome": 8.84,
+    "avgTemp": 20.5,
+    "continent": "Asia"
+  },
+  {
+    "rank": 60,
+    "country": "Georgia",
+    "iq": 86,
+    "educationExpenditure": 0.084,
+    "avgIncome": 2.901,
+    "avgTemp": 20.1,
+    "continent": "Europe"
+  },
+  {
+    "rank": 61,
+    "country": "Sri Lanka",
+    "iq": 85,
+    "educationExpenditure": 0.055,
+    "avgIncome": 2.442,
+    "avgTemp": 29.7,
+    "continent": "Asia"
+  },
+  {
+    "rank": 62,
+    "country": "Montenegro",
+    "iq": 85,
+    "educationExpenditure": 0,
+    "avgIncome": 6.056,
+    "avgTemp": 21.1,
+    "continent": "Europe"
+  },
+  {
+    "rank": 63,
+    "country": "Cuba",
+    "iq": 84,
+    "educationExpenditure": 0.395,
+    "avgIncome": 5.538,
+    "avgTemp": 3,
+    "continent": "North America"
+  },
+  {
+    "rank": 64,
+    "country": "Brazil",
+    "iq": 83,
+    "educationExpenditure": 0.427,
+    "avgIncome": 7.586,
+    "avgTemp": 30.6,
+    "continent": "South America"
+  },
+  {
+    "rank": 65,
+    "country": "Philippines",
+    "iq": 83,
+    "educationExpenditure": 0.067,
+    "avgIncome": 2.33,
+    "avgTemp": 31.9,
+    "continent": "Asia"
+  },
+  {
+    "rank": 66,
+    "country": "Colombia",
+    "iq": 83,
+    "educationExpenditure": 0.231,
+    "avgIncome": 5.037,
+    "avgTemp": 30.3,
+    "continent": "South America"
+  },
+  {
+    "rank": 67,
+    "country": "Laos",
+    "iq": 83,
+    "educationExpenditure": 0.032,
+    "avgIncome": 1.157,
+    "avgTemp": 32.1,
+    "continent": "Asia"
+  },
+  {
+    "rank": 68,
+    "country": "Venezuela",
+    "iq": 83,
+    "educationExpenditure": 0.273,
+    "avgIncome": 8.025,
+    "avgTemp": 32.1,
+    "continent": "South America"
+  },
+  {
+    "rank": 69,
+    "country": "Albania",
+    "iq": 82,
+    "educationExpenditure": 0.118,
+    "avgIncome": 3.513,
+    "avgTemp": 21.4,
+    "continent": "Europe"
+  },
+  {
+    "rank": 70,
+    "country": "United Arab Emirates",
+    "iq": 82,
+    "educationExpenditure": 0.805,
+    "avgIncome": 38.644,
+    "avgTemp": 34.4,
+    "continent": "Asia"
+  },
+  {
+    "rank": 71,
+    "country": "Dominican Republic",
+    "iq": 82,
+    "educationExpenditure": 0.158,
+    "avgIncome": 4.964,
+    "avgTemp": 31.7,
+    "continent": "North America"
+  },
+  {
+    "rank": 72,
+    "country": "Puerto Rico",
+    "iq": 82,
+    "educationExpenditure": 1.174,
+    "avgIncome": 16.583,
+    "avgTemp": 30.4,
+    "continent": "North America"
+  },
+  {
+    "rank": 73,
+    "country": "Afghanistan",
+    "iq": 81,
+    "educationExpenditure": 0.015,
+    "avgIncome": 0.474,
+    "avgTemp": 24.4,
+    "continent": "Asia"
+  },
+  {
+    "rank": 74,
+    "country": "Iran",
+    "iq": 81,
+    "educationExpenditure": 0.176,
+    "avgIncome": 4.545,
+    "avgTemp": 26.6,
+    "continent": "Asia"
+  },
+  {
+    "rank": 75,
+    "country": "Pakistan",
+    "iq": 81,
+    "educationExpenditure": 0.027,
+    "avgIncome": 0.985,
+    "avgTemp": 30.9,
+    "continent": "Asia"
+  },
+  {
+    "rank": 76,
+    "country": "Indonesia",
+    "iq": 80,
+    "educationExpenditure": 0.079,
+    "avgIncome": 2.355,
+    "avgTemp": 31.6,
+    "continent": "Asia"
+  },
+  {
+    "rank": 77,
+    "country": "Kuwait",
+    "iq": 80,
+    "educationExpenditure": 1.99,
+    "avgIncome": 37.088,
+    "avgTemp": 34.3,
+    "continent": "Asia"
+  },
+  {
+    "rank": 78,
+    "country": "Oman",
+    "iq": 80,
+    "educationExpenditure": 0.798,
+    "avgIncome": 15.328,
+    "avgTemp": 33.8,
+    "continent": "Asia"
+  },
+  {
+    "rank": 79,
+    "country": "Qatar",
+    "iq": 80,
+    "educationExpenditure": 2.331,
+    "avgIncome": 58.617,
+    "avgTemp": 33.7,
+    "continent": "Asia"
+  },
+  {
+    "rank": 80,
+    "country": "Bolivia",
+    "iq": 79,
+    "educationExpenditure": 0.156,
+    "avgIncome": 1.912,
+    "avgTemp": 27.6,
+    "continent": "South America"
+  },
+  {
+    "rank": 81,
+    "country": "Ecuador",
+    "iq": 79,
+    "educationExpenditure": 0.199,
+    "avgIncome": 4.159,
+    "avgTemp": 25.6,
+    "continent": "South America"
+  },
+  {
+    "rank": 82,
+    "country": "Egypt",
+    "iq": 78,
+    "educationExpenditure": 0.092,
+    "avgIncome": 2.175,
+    "avgTemp": 30.1,
+    "continent": "Africa"
+  },
+  {
+    "rank": 83,
+    "country": "Algeria",
+    "iq": 77,
+    "educationExpenditure": 0.253,
+    "avgIncome": 3.684,
+    "avgTemp": 26.5,
+    "continent": "Africa"
+  },
+  {
+    "rank": 84,
+    "country": "India",
+    "iq": 77,
+    "educationExpenditure": 0.047,
+    "avgIncome": 1.163,
+    "avgTemp": 31.7,
+    "continent": "Asia"
+  },
+  {
+    "rank": 85,
+    "country": "Saudi Arabia",
+    "iq": 77,
+    "educationExpenditure": 1.265,
+    "avgIncome": 17.468,
+    "avgTemp": 32.7,
+    "continent": "Asia"
+  },
+  {
+    "rank": 86,
+    "country": "Sudan",
+    "iq": 77,
+    "educationExpenditure": 0.025,
+    "avgIncome": 1.168,
+    "avgTemp": 36.5,
+    "continent": "Africa"
+  },
+  {
+    "rank": 87,
+    "country": "Syria",
+    "iq": 76,
+    "educationExpenditure": 0.252,
+    "avgIncome": 4.532,
+    "avgTemp": 25.3,
+    "continent": "Asia"
+  },
+  {
+    "rank": 88,
+    "country": "Bangladesh",
+    "iq": 75,
+    "educationExpenditure": 0.02,
+    "avgIncome": 0.936,
+    "avgTemp": 29.9,
+    "continent": "Asia"
+  },
+  {
+    "rank": 89,
+    "country": "Chad",
+    "iq": 75,
+    "educationExpenditure": 0.016,
+    "avgIncome": 0.63,
+    "avgTemp": 35.6,
+    "continent": "Africa"
+  },
+  {
+    "rank": 90,
+    "country": "East Timor",
+    "iq": 74,
+    "educationExpenditure": 0.054,
+    "avgIncome": 2.073,
+    "avgTemp": 30.9,
+    "continent": "Asia"
+  },
+  {
+    "rank": 91,
+    "country": "Kenya",
+    "iq": 74,
+    "educationExpenditure": 0.062,
+    "avgIncome": 0.939,
+    "avgTemp": 27.4,
+    "continent": "Africa"
+  },
+  {
+    "rank": 92,
+    "country": "Zimbabwe",
+    "iq": 74,
+    "educationExpenditure": 0.05,
+    "avgIncome": 0.843,
+    "avgTemp": 27.1,
+    "continent": "Africa"
+  },
+  {
+    "rank": 93,
+    "country": "El Salvador",
+    "iq": 72,
+    "educationExpenditure": 0.113,
+    "avgIncome": 2.912,
+    "avgTemp": 31.2,
+    "continent": "North America"
+  },
+  {
+    "rank": 94,
+    "country": "Morocco",
+    "iq": 71,
+    "educationExpenditure": 0.144,
+    "avgIncome": 2.567,
+    "avgTemp": 24.1,
+    "continent": "Africa"
+  },
+  {
+    "rank": 95,
+    "country": "South Africa",
+    "iq": 69,
+    "educationExpenditure": 0.336,
+    "avgIncome": 5.941,
+    "avgTemp": 24.7,
+    "continent": "Africa"
+  },
+  {
+    "rank": 96,
+    "country": "Niger",
+    "iq": 69,
+    "educationExpenditure": 0.015,
+    "avgIncome": 0.434,
+    "avgTemp": 36.5,
+    "continent": "Africa"
+  },
+  {
+    "rank": 97,
+    "country": "Somalia",
+    "iq": 69,
+    "educationExpenditure": 0.001,
+    "avgIncome": 0.396,
+    "avgTemp": 33.2,
+    "continent": "Africa"
+  },
+  {
+    "rank": 98,
+    "country": "Nigeria",
+    "iq": 68,
+    "educationExpenditure": 0,
+    "avgIncome": 1.752,
+    "avgTemp": 33.3,
+    "continent": "Africa"
+  },
+  {
+    "rank": 99,
+    "country": "Ethiopia",
+    "iq": 67,
+    "educationExpenditure": 0.021,
+    "avgIncome": 0.379,
+    "avgTemp": 27.2,
+    "continent": "Africa"
+  },
+  {
+    "rank": 100,
+    "country": "Cameroon",
+    "iq": 67,
+    "educationExpenditure": 0.036,
+    "avgIncome": 1.234,
+    "avgTemp": 31.1,
+    "continent": "Africa"
+  },
+  {
+    "rank": 101,
+    "country": "Congo",
+    "iq": 64,
+    "educationExpenditure": 0.007,
+    "avgIncome": 0.316,
+    "avgTemp": 30.4,
+    "continent": "Africa"
+  },
+  {
+    "rank": 102,
+    "country": "Ghana",
+    "iq": 61,
+    "educationExpenditure": 0.076,
+    "avgIncome": 1.166,
+    "avgTemp": 32.1,
+    "continent": "Africa"
+  },
+  {
+    "rank": 103,
+    "country": "Ivory Coast",
+    "iq": 61,
+    "educationExpenditure": 0.069,
+    "avgIncome": 1.289,
+    "avgTemp": 32.2,
+    "continent": "Africa"
+  },
+  {
+    "rank": 104,
+    "country": "Equatorial Guinea",
+    "iq": 56,
+    "educationExpenditure": 0,
+    "avgIncome": 7.625,
+    "avgTemp": 29.9,
+    "continent": "Africa"
+  },
+  {
+    "rank": 105,
+    "country": "Gambia",
+    "iq": 55,
+    "educationExpenditure": 0.014,
+    "avgIncome": 0.648,
+    "avgTemp": 32.9,
+    "continent": "Africa"
+  },
+  {
+    "rank": 106,
+    "country": "Guatemala",
+    "iq": 55,
+    "educationExpenditure": 0.092,
+    "avgIncome": 2.83,
+    "avgTemp": 32.1,
+    "continent": "North America"
+  },
+  {
+    "rank": 107,
+    "country": "Sierra Leone",
+    "iq": 52,
+    "educationExpenditure": 0.016,
+    "avgIncome": 0.412,
+    "avgTemp": 30.4,
+    "continent": "Africa"
+  },
+  {
+    "rank": 108,
+    "country": "Nepal",
+    "iq": 51,
+    "educationExpenditure": 0.022,
+    "avgIncome": 0.595,
+    "avgTemp": 24.6,
+    "continent": "Asia"
+  }
+]

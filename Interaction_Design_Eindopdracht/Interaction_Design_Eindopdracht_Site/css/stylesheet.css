@@ -1,13 +1,34 @@
 :root {
   --primary-color: #3498db;
   --button-bg: #2ecc71;
-  --radio-indicator-size: 1.25rem;
+  --hover-color: #bee1f8;
+  --text-white: #fff;
   --delete-red: red;
 }
 
+body {
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 0.1fr 0.1fr 7fr;
+}
+
+.select-country {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Radio buttons styling */
 .radio-group {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
+  margin: 1rem 0;
 }
 
 .radio-input {
@@ -15,36 +36,27 @@
 }
 
 .radio-label {
-  position: relative;
-  padding-left: calc(var(--radio-indicator-size) + 0.625rem);
+  padding: 0.5rem 1rem;
   cursor: pointer;
-  display: inline-block;
+  margin: 0.25rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  transition: background-color 0.3s, color 0.3s, border 0.3s;
+}
+
+.radio-label:hover {
+  background-color: var(--hover-color);
+  color: var(--text-white);
 }
 
 .radio-input:checked + .radio-label {
-  color: var(--primary-color);
+  color: var(--text-white);
+  background-color: var(--primary-color);
   border-color: var(--primary-color);
 }
 
-.radio-input:checked + .radio-label {
-  color: var(--primary-color);
-}
-
-html {
-  display: grid;
-}
-
-body {
-  font-family: 'Arial', sans-serif;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-rows: auto 1fr;
-}
-
+/* Select containers styling */
 .select-container {
-  margin-top: 1rem;
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -53,17 +65,19 @@ body {
 
 .select-input {
   width: 100%;
-  padding: 1rem;
+  padding: 0.75rem;
   font-size: 1rem;
   margin-bottom: 1rem;
   box-sizing: border-box;
 }
 
+/* Delete button styling */
 .btn-delete {
-  background-color: #fff;
+  background-color: var(--text-white);
   border: 1px solid var(--delete-red);
   color: var(--delete-red);
-  padding: 0.625rem 1.25rem;
+  /* padding: 0.625rem 1.25rem; */
+  padding: 0.25rem 0.5rem;
   border-radius: 0.3125rem;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s, border 0.3s;
@@ -71,22 +85,143 @@ body {
 
 .btn-delete:hover {
   background-color: var(--delete-red);
-  color: #fff;
+  color: var(--text-white);
   border: 1px solid var(--delete-red);
 }
 
-.btn-delete:active {
+/* Chart container and canvas styling */
+.chart-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.chart {
+  width: 100%;
+}
+
+:root {
+  --primary-color: #3498db;
+  --button-bg: #2ecc71;
+  --hover-color: #bee1f8;
+  --delete-red: red;
+  --mobile-breakpoint: 600px;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 0.1fr 0.1fr 7fr;
+}
+
+.select-country {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Radio buttons styling */
+.radio-group {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+}
+
+.radio-input {
+  display: none;
+}
+
+.radio-label {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  margin: 0.25rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  transition: background-color 0.3s, color 0.3s, border 0.3s;
+}
+
+.radio-label:hover {
+  background-color: var(--hover-color);
+  color: var(--text-white);
+}
+
+.radio-input:checked + .radio-label {
+  color: var(--text-white);
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+/* Select containers styling */
+.select-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.select-input {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  box-sizing: border-box;
+}
+
+/* Delete button styling */
+.btn-delete {
+  background-color: var(--text-white);
+  border: 1px solid var(--delete-red);
+  color: var(--delete-red);
+  /* padding: 0.625rem 1.25rem; */
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.3125rem;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, border 0.3s;
+}
+
+.btn-delete:hover {
   background-color: var(--delete-red);
-  color: #fff;
+  color: var(--text-white);
   border: 1px solid var(--delete-red);
 }
 
-.btn-delete svg {
-  fill: var(--delete-red);
-  width: 1.5rem;
-  height: 1.5rem;
+/* Chart container and canvas styling */
+.chart-container {
+  width: 100%;
+  overflow: hidden;
 }
 
-.btn-delete:hover svg {
-  fill: #fff;
+.chart {
+  width: 100%;
+}
+
+.select2-selection__choice {
+  color: var(--text-white);
+  background-color: var(--primary-color)!important;
+}
+.select2-selection__choice__remove{
+  color: var(--delete-red) !important;
+}
+
+/* Media query for responsiveness */
+/* @media only screen and (max-width: var(--mobile-breakpoint)) { */
+@media only screen and (max-width: 600px) {
+ 
+  .select-container {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  .select2-container{
+    width: 100% !important; 
+    /* margin-left: 1rem !important;  */
+  }
 }

@@ -134,61 +134,6 @@ const temperatureBorderColor = "rgba(169, 169, 169, 1)";
 
 const scatterColor = "rgba(255, 0, 0, 1)"; // Customize the scatter plot color
 
-
-function createChart(selectedCountries = [], selectedContinent = []) {
-  const canvas = document.getElementById("myChart");
-  const ctx = canvas.getContext("2d");
-
-  const filteredData = data.filter(
-    (entry) =>
-      (selectedCountries.length > 0
-        ? selectedCountries.includes(entry.country)
-        : true) &&
-      (selectedContinent.length > 0
-        ? selectedContinent.includes(entry.continent)
-        : true)
-  );
-
-  const countries = filteredData.map((entry) => entry.country);
-  const iqData = filteredData.map((entry) => entry.iq);
-  const expenditureData = filteredData.map(
-    (entry) => entry.educationExpenditure
-  );
-  const incomeData = filteredData.map((entry) => entry.avgIncome);
-  const temperatureData = filteredData.map((entry) => entry.avgTemp);
-
-  const isMobile = window.outerWidth <= 600;
-
-  if (isMobile && chartType === "bar") {
-    canvas.style = "height: 100vh";
-  } else {
-    canvas.style = "height: 37.5rem";
-  }
-
-  // Destroy the existing chart if it exists
-  if (chartInstance) {
-    chartInstance.destroy();
-  }
-
-  if (chartType === "bar") {
-    chartInstance = createBarChart(
-      ctx,
-      countries,
-      iqData,
-      expenditureData,
-      incomeData,
-      temperatureData,
-      isMobile
-    );
-  } else if (chartType === "scatter1") {
-    createScatterPlot1(ctx, temperatureData, iqData,isMobile);
-  } else if (chartType === "scatter2") {
-    createScatterPlot2(ctx, expenditureData, iqData,isMobile);
-  } else if (chartType === "scatter3") {
-    createScatterPlot3(ctx, expenditureData, incomeData,isMobile);
-  }
-}
-
 // Create the bar chart
 function createBarChart(
   ctx,
@@ -247,7 +192,7 @@ function createBarChart(
       plugins: {
         legend: {
           display: true,
-          position: isMobile ? "top" : "top",  // You can customize the legend position as needed
+          position: "top",
           align: "start",
           textDirection: "ltr",
           labels: {
@@ -260,7 +205,6 @@ function createBarChart(
       scales: {
         x: {
           beginAtZero: true,
-          position: isMobile ? 'top' : 'bottom',  // Adjust the x-axis position based on mobile
         },
         y: {
           beginAtZero: true,
@@ -274,25 +218,70 @@ function createBarChart(
   });
 }
 
+function createChart(selectedCountries = [], selectedContinent = []) {
+  const canvas = document.getElementById("myChart");
+  const ctx = canvas.getContext("2d");
+
+  const filteredData = data.filter(
+    (entry) =>
+      (selectedCountries.length > 0
+        ? selectedCountries.includes(entry.country)
+        : true) &&
+      (selectedContinent.length > 0
+        ? selectedContinent.includes(entry.continent)
+        : true)
+  );
+
+  const countries = filteredData.map((entry) => entry.country);
+  const iqData = filteredData.map((entry) => entry.iq);
+  const expenditureData = filteredData.map(
+    (entry) => entry.educationExpenditure
+  );
+  const incomeData = filteredData.map((entry) => entry.avgIncome);
+  const temperatureData = filteredData.map((entry) => entry.avgTemp);
+
+  const isMobile = window.outerWidth <= 600;
+
+  if (isMobile && chartType === "bar") {
+    canvas.style = "height: 100vh";
+  } else {
+    canvas.style = "height: 37.5rem";
+  }
+
+  // Destroy the existing chart if it exists
+  if (chartInstance) {
+    chartInstance.destroy();
+  }
+
+  if (chartType === "bar") {
+    chartInstance = createBarChart(
+      ctx,
+      countries,
+      iqData,
+      expenditureData,
+      incomeData,
+      temperatureData,
+      isMobile
+    );
+  } else if (chartType === "scatter1") {
+    createScatterPlot1(ctx, temperatureData, iqData);
+  } else if (chartType === "scatter2") {
+    createScatterPlot2(ctx, expenditureData, iqData);
+  } else if (chartType === "scatter3") {
+    createScatterPlot3(ctx, expenditureData, incomeData);
+  }
+}
+
 // Helper functions to create scatter plots
 // Scatter Plot 1: Temperature vs IQ
-function createScatterPlot1(ctx, xData, yData, isMobile) {
-  // Filter out 0 values
-  const filteredData = xData.reduce((result, value, index) => {
-    if (value !== 0 && yData[index] !== 0) {
-      result.x.push(value);
-      result.y.push(yData[index]);
-    }
-    return result;
-  }, { x: [], y: [] });
-
+function createScatterPlot1(ctx, xData, yData) {
   chartInstance = new Chart(ctx, {
     type: "scatter",
     data: {
       datasets: [
         {
           label: 'Temperature vs IQ',
-          data: filteredData.x.map((value, index) => ({ x: value, y: filteredData.y[index] })),
+          data: xData.map((value, index) => ({ x: value, y: yData[index] })),
           backgroundColor: scatterColor,
           pointRadius: 6,
         }
@@ -303,10 +292,10 @@ function createScatterPlot1(ctx, xData, yData, isMobile) {
       scales: {
         x: {
           type: 'linear',
-          position: isMobile ? 'top' : 'bottom',
+          position: 'bottom',
           title: {
             display: true,
-            text: 'average temperature (°C)', 
+            text: 'Temperature (°C)', 
           },
         },
         y: {
@@ -323,23 +312,14 @@ function createScatterPlot1(ctx, xData, yData, isMobile) {
 }
 
 // Scatter Plot 2: Education Expenditure vs IQ
-function createScatterPlot2(ctx, xData, yData, isMobile) {
-  // Filter out 0 values
-  const filteredData = xData.reduce((result, value, index) => {
-    if (value !== 0 && yData[index] !== 0) {
-      result.x.push(value);
-      result.y.push(yData[index]);
-    }
-    return result;
-  }, { x: [], y: [] });
-
+function createScatterPlot2(ctx, xData, yData) {
   chartInstance = new Chart(ctx, {
     type: "scatter",
     data: {
       datasets: [
         {
           label: 'Education Expenditure vs IQ',
-          data: filteredData.x.map((value, index) => ({ x: value, y: filteredData.y[index] })),
+          data: xData.map((value, index) => ({ x: value, y: yData[index] })),
           backgroundColor: scatterColor,
           pointRadius: 6,
         }
@@ -350,7 +330,7 @@ function createScatterPlot2(ctx, xData, yData, isMobile) {
       scales: {
         x: {
           type: 'linear',
-          position: isMobile ? 'top' : 'bottom',
+          position: 'bottom',
           title: {
             display: true,
             text: 'Education Expenditure (per capita in thousands $)',
@@ -370,23 +350,14 @@ function createScatterPlot2(ctx, xData, yData, isMobile) {
 }
 
 // Scatter Plot 3: Education Expenditure vs Average Income
-function createScatterPlot3(ctx, xData, yData, isMobile) {
-  // Filter out 0 values
-  const filteredData = xData.reduce((result, value, index) => {
-    if (value !== 0 && yData[index] !== 0) {
-      result.x.push(value);
-      result.y.push(yData[index]);
-    }
-    return result;
-  }, { x: [], y: [] });
-
+function createScatterPlot3(ctx, xData, yData) {
   chartInstance = new Chart(ctx, {
     type: "scatter",
     data: {
       datasets: [
         {
           label: 'Education Expenditure vs Average Income',
-          data: filteredData.x.map((value, index) => ({ x: value, y: filteredData.y[index] })),
+          data: xData.map((value, index) => ({ x: value, y: yData[index] })),
           backgroundColor: scatterColor,
           pointRadius: 6,
         }
@@ -397,7 +368,7 @@ function createScatterPlot3(ctx, xData, yData, isMobile) {
       scales: {
         x: {
           type: 'linear',
-          position: isMobile ? 'top' : 'bottom',
+          position: 'bottom',
           title: {
             display: true,
             text: 'Education Expenditure (per capita in thousands $)', 
@@ -415,8 +386,6 @@ function createScatterPlot3(ctx, xData, yData, isMobile) {
     }
   });
 }
-
-
 
 
 // Modify the redrawChart function to pass the selected chart type
