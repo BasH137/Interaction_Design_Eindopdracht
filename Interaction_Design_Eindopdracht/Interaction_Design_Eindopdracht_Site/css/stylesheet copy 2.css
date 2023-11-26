@@ -28,9 +28,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: start;
-  align-items: center;
   gap: 1rem;
-  height: 50%;
 }
 
 .select-input {
@@ -41,21 +39,21 @@ body {
   box-sizing: border-box;
 }
 /* asdfijuhlasfdkjhlnc */
-.options-container {
+.options-container{
   display: grid;
   grid-template-columns: 3fr 8fr 3fr;
-  grid-template-rows: 1fr 0.05fr 0.5fr 0.05fr 0.5fr;
+  grid-template-rows: 1fr 0.1fr 0.5fr 0.1fr 0.5fr;
   grid-template-areas: 
-    ". radio-buttons ."
-    ". continent-filter ."
-    ". continent-select ."	
-    ". country-filter ."
-    ". country-select ."	
+  ". r1 ."
+  ". l1 ."
+  ". c1 ."	
+  ". l2 ."
+  ". c2 ."	
   ;
 }
 
-.radio-group {
-  grid-area: radio-buttons;
+.radio-group{
+  grid-area: r1;
   display: flex;
   justify-content: space-between;
   align-content: center;
@@ -63,21 +61,22 @@ body {
   margin: 1rem 0;
 }
 
-#continentFilterLabel {
-  grid-area: continent-filter;
+#l1{
+  grid-area: l1;
 }
 
-#countryFilterLabel {
-  grid-area: country-filter;
+#l2{
+  grid-area: l2;
 }
 
-#continentFilterContainer {
-  grid-area: continent-select;
+#c1{
+  grid-area: c1;
 }
 
-#countryFilterContainer {
-  grid-area: country-select;
+#c2{
+  grid-area: c2;
 }
+
 
 .select2-container{
   width: 100% !important;
@@ -116,7 +115,6 @@ body {
 
 .radio-label {
   padding: 0.5rem 1rem;
-  /* padding: 0.5rem 0; */
   cursor: pointer;
   /* margin: 0.25rem; */
   transition: background-color 0.3s, color 0.3s, border 0.3s;
@@ -136,6 +134,11 @@ body {
   border-color: var(--primary-color);
 }
 
+.radio-label:focus {
+  outline: none; /* Remove the default focus outline */
+  border-color: #db3434; /* Add your custom focus border color */
+}
+
 .radio-input {
   position: absolute;
   width: 1px;
@@ -148,6 +151,8 @@ body {
 }
 
 .radio-input:focus + .radio-label {
+  /* border: 2px solid var(--text-black); */
+  /* border: 2px solid black; */
   border: 2px solid var(--text-black);
 }
 
@@ -159,37 +164,43 @@ body {
   color: var(--delete-red) !important;
 }
 
+/* .select2-container{
+  width: 40% !important;
+} */
 
 .chart-container {
   margin-left: 3rem;
   margin-right: 3rem;
   overflow: visible;
 }
+/* 
+@media only screen and (max-width: 1200px){
+
+  .select2-container{
+    width: 50% !important;
+  }
+} */
 
 
-@media only screen and (max-width: 1700px) {
-  .radio-group {
-    justify-content: center;
+@media only screen and (max-width: 600px) {
+
+  .select-container {
+    flex-direction: row;
+    align-items: center;
     gap: 0.5rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+  .chart-container {
+    margin-left: 1rem;
+    margin-right: 1rem;
   }
 
-  .radio-label{
-    padding: 0.5rem 0;
-  }
+  /* .select2-container{
+    width: 100% !important;
+  } */
 }
 
-@media only screen and (max-width: 1022px) {
-  .radio-group {
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-    gap: 0.5rem;
-  }
-
-  .radio-label{
-    width: 100%;
-  }
-}
 
 @media only screen and (min-width: 901px) and (max-width: 1200px) {
 
@@ -199,28 +210,10 @@ body {
   }
 }
 
-@media only screen and (max-width: 620px) {
-  .radio-group {
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-    gap: 0.5rem;
-  }
+/* @media only screen and (min-width: 2200px){
 
-}
-
-@media only screen and (max-width: 600px) {
-
-  .select-container {
-    gap: 0.5rem;
-  }
-  
-  .chart-container {
-    margin-left: 1rem;
-    margin-right: 1rem;
+  .select2-container{
+    width: 30% !important;
   }
 }
-
-
-
-
+ */

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Country IQ Comparison</title>
+  <title>Country Iq Comparison</title>
   <link rel="icon" href="./data/Images/brain-emoji.png" type="image/png">
   <link rel="stylesheet" href="css/stylesheet.css" />
   <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
@@ -13,24 +13,25 @@
 <body class="grid-container">
 
   <div class="options-container">
-    <!-- Add radio buttons for chart type -->
-    <div class="radio-group">
-      <input type="radio" id="overallComparisonRadio" class="radio-input" name="chartType" value="bar" checked>
-      <label for="overallComparisonRadio" class="radio-label">Overall Comparison</label>
+  <!-- Add radio buttons for chart type -->
+  <div class="radio-group">
+    <input type="radio" id="barChartRadio" class="radio-input" name="chartType" value="bar" checked>
+    <label for="barChartRadio" class="radio-label">Overall Comparison</label>
+  
+    <input type="radio" id="scatterChart1Radio" class="radio-input" name="chartType" value="scatter1">
+    <label for="scatterChart1Radio" class="radio-label">Temperature vs IQ</label>
+  
+    <input type="radio" id="scatterChart2Radio" class="radio-input" name="chartType" value="scatter2">
+    <label for="scatterChart2Radio" class="radio-label">Education Expenditure vs IQ</label>
+  
+    <input type="radio" id="scatterChart3Radio" class="radio-input" name="chartType" value="scatter3">
+    <label for="scatterChart3Radio" class="radio-label">Education Expenditure vs Average Income</label>
+  </div>
 
-      <input type="radio" id="temperatureVsIQRadio" class="radio-input" name="chartType" value="scatter1">
-      <label for="temperatureVsIQRadio" class="radio-label">Temperature vs IQ</label>
-
-      <input type="radio" id="educationExpenditureVsIQRadio" class="radio-input" name="chartType" value="scatter2">
-      <label for="educationExpenditureVsIQRadio" class="radio-label">Education Expenditure vs IQ</label>
-
-      <input type="radio" id="educationExpenditureVsIncomeRadio" class="radio-input" name="chartType" value="scatter3">
-      <label for="educationExpenditureVsIncomeRadio" class="radio-label">Education Expenditure vs Average Income</label>
-    </div>
 
     <!-- Add a new select element for continents -->
-    <label id="continentFilterLabel" for="continentSelect" class="select-label">Filter Continents</label>
-    <div id="continentFilterContainer" class="select-container">
+    <label id="l1" for="continentSelect" class="select-label">filter continents</label>
+    <div id="c1" class="select-container">
       <select id="continentSelect" class="select-input" multiple="multiple">
         <!-- Continents will be dynamically added here -->
       </select>
@@ -41,10 +42,10 @@
         </svg>
       </button>
     </div>
-
+    
     <!-- Add a new select element for countries -->
-    <label id="countryFilterLabel" for="countrySelect" class="select-label">Filter Countries</label>
-    <div id="countryFilterContainer" class="select-container select-country">
+    <label id="l2" for="countrySelect" class="select-label">filter countries</label>
+    <div id="c2" class="select-container select-country">
       <select id="countrySelect" class="select-input" multiple="multiple">
         <!-- Countries will be dynamically added here -->
       </select>
@@ -56,7 +57,7 @@
       </button>
     </div>
   </div>
-
+    
   <!-- Chart container -->
   <div class="chart-container">
     <canvas id="myChart" class="chart"></canvas>
