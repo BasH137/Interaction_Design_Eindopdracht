@@ -31,6 +31,19 @@ body {
   align-items: center;
   gap: 1rem;
   height: 50%;
+
+  /* margin-top: 1rem; */
+}
+
+.select2-container .select2-selection--multiple {
+  max-height: 50px; /* Set a maximum height for the selection area */
+  overflow-y: auto;  /* Enable vertical scrolling if the content exceeds the max height */
+}
+
+.select2-container .select2-selection__rendered {
+  white-space: nowrap; /* Prevent selected items from wrapping */
+  overflow: hidden;    /* Hide any overflow */
+  text-overflow: ellipsis; /* Display ellipsis (...) for truncated text */
 }
 
 .select-input {
@@ -40,11 +53,10 @@ body {
   margin-bottom: 1rem;
   box-sizing: border-box;
 }
-/* asdfijuhlasfdkjhlnc */
 .options-container {
   display: grid;
   grid-template-columns: 3fr 8fr 3fr;
-  grid-template-rows: 1fr 0.05fr 0.5fr 0.05fr 0.5fr;
+  grid-template-rows: 2fr 0.5fr 1fr 0.5fr 1fr;
   grid-template-areas: 
     ". radio-buttons ."
     ". continent-filter ."
@@ -102,17 +114,6 @@ body {
   color: var(--text-white);
   border: 1px solid var(--delete-red);
 }
-
-/* Radio buttons styling */
-.radio-group {
-  /* display: flex;
-  justify-content: center;
-  align-content: center;
-  flex-wrap: wrap;
-  margin: 1rem 0; */
-}
-
-
 
 .radio-label {
   padding: 0.5rem 1rem;
@@ -183,11 +184,24 @@ body {
     justify-content: center;
     flex-direction: column;
     text-align: center;
-    gap: 0.5rem;
+    gap: 2rem;
   }
 
   .radio-label{
     width: 100%;
+  }
+
+  .options-container {
+    display: grid;
+    grid-template-columns: 1.5fr 8fr 1.5fr;
+    grid-template-rows: 3fr 0.05fr 1fr 0.05fr 1fr;
+    grid-template-areas: 
+      ". radio-buttons ."
+      ". continent-filter ."
+      ". continent-select ."	
+      ". country-filter ."
+      ". country-select ."	
+    ;
   }
 }
 
@@ -197,24 +211,25 @@ body {
     margin-left: 1.5rem;
     margin-right: 1.5rem;
   }
-}
 
-@media only screen and (max-width: 620px) {
-  .radio-group {
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-    gap: 0.5rem;
+  .options-container {
+    display: grid;
+    grid-template-columns: 1fr 16fr 1fr;
+    grid-template-rows: 8fr 0.8fr 2fr 0.8fr 2fr;
+    grid-template-areas: 
+      ". radio-buttons ."
+      ". continent-filter ."
+      ". continent-select ."	
+      ". country-filter ."
+      ". country-select ."	
+    ;
   }
-
 }
 
 @media only screen and (max-width: 600px) {
-
-  .select-container {
-    gap: 0.5rem;
+  .radio-group{
+    margin-bottom: 2rem;
   }
-  
   .chart-container {
     margin-left: 1rem;
     margin-right: 1rem;
