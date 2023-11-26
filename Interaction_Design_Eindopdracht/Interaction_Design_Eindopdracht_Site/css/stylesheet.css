@@ -3,6 +3,7 @@
   --button-bg: #2ecc71;
   --hover-color: #bee1f8;
   --text-white: #fff;
+  --text-black: black;
   --delete-red: red;
 }
 
@@ -22,7 +23,7 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 0.5fr 0.1fr 0.1fr 7fr;
-  grid-template-areas: 
+  grid-template-areas:
   "row1"
   "row2"
   "row3"
@@ -88,9 +89,6 @@ body {
   margin: 1rem 0;
 }
 
-.radio-input {
-  display: none;
-}
 
 
 .radio-label {
@@ -98,7 +96,7 @@ body {
   cursor: pointer;
   margin: 0.25rem;
   transition: background-color 0.3s, color 0.3s, border 0.3s;
-  
+
   border: 2px solid var(--hover-color);
   border-radius: 0.25rem;
 }
@@ -114,6 +112,28 @@ body {
   border-color: var(--primary-color);
 }
 
+.radio-label:focus {
+  outline: none; /* Remove the default focus outline */
+  border-color: #db3434; /* Add your custom focus border color */
+}
+
+.radio-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.radio-input:focus + .radio-label {
+  /* border: 2px solid var(--text-black); */
+  /* border: 2px solid black; */
+  border: 2px solid var(--text-black);
+}
+
 .select2-selection__choice {
   color: var(--text-white);
   background-color: var(--primary-color)!important;
@@ -123,7 +143,7 @@ body {
 }
 
 .select2-container{
-  width: 40% !important; 
+  width: 40% !important;
 }
 
 .chart-container {
@@ -135,13 +155,13 @@ body {
 @media only screen and (max-width: 1200px){
 
   .select2-container{
-    width: 50% !important; 
+    width: 50% !important;
   }
 }
 
 
 @media only screen and (max-width: 600px) {
- 
+
   .select-container {
     flex-direction: row;
     align-items: center;
@@ -155,7 +175,7 @@ body {
   }
 
   .select2-container{
-    width: 100% !important; 
+    width: 100% !important;
   }
 }
 
@@ -171,7 +191,7 @@ body {
 @media only screen and (min-width: 2200px){
 
   .select2-container{
-    width: 30% !important; 
+    width: 30% !important;
   }
 }
 
