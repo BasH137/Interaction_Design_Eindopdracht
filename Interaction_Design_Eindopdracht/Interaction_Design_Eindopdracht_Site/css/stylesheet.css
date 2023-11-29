@@ -5,6 +5,7 @@
   --text-white: #fff;
   --text-black: black;
   --delete-red: red;
+  --responsive-margin: 3rem;
 }
 
 body {
@@ -13,14 +14,16 @@ body {
   padding: 0;
 }
 
-.grid-container {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 0.5fr 1fr;
+.responsive-margin {
+  margin-left: var(--responsive-margin);
+  margin-right: var(--responsive-margin);
+}
+
+.chart-container{
+ min-height: 37.5rem;
 }
 
 .select-country {
-  /* margin-top: 1rem; */
   margin-bottom: 1rem;
 }
 
@@ -53,8 +56,21 @@ body {
   margin-bottom: 1rem;
   box-sizing: border-box;
 }
+
 .options-container {
   display: grid;
+  grid-template-columns: 1fr 16fr 1fr;
+  grid-template-rows: 0.5fr 1fr 0.5fr 1fr;
+  grid-template-areas: 
+    ". continent-filter ."
+    ". continent-select ."	
+    ". country-filter ."
+    ". country-select ."	
+  ;
+}
+
+.margin-bottom-m{
+  margin-bottom: calc(var(--responsive-margin) / 2);
 }
 
 .radio-group {
@@ -153,9 +169,9 @@ body {
 
 
 .chart-container {
-  margin-left: 3rem;
-  margin-right: 3rem;
-  overflow: visible;
+  /* margin-left: 3rem;
+  margin-right: 3rem; */
+  /* overflow: visible; */
 }
 
 
@@ -184,9 +200,9 @@ body {
     width: 100%;
   }
 
-  .options-container {
+  /* .options-container {
     grid-template-columns: 1.5fr 8fr 1.5fr;
-    grid-template-rows: 3fr 0.05fr 1fr 0.05fr 1fr;
+    grid-template-rows: 0.05fr 1fr 0.05fr 1fr;
     grid-template-areas: 
       ". radio-buttons ."
       ". continent-filter ."
@@ -194,21 +210,21 @@ body {
       ". country-filter ."
       ". country-select ."	
     ;
-  }
+  } */
 }
 
 @media only screen and (min-width: 901px) and (max-width: 1200px) {
 
-  .chart-container {
+  /* .chart-container {
     margin-left: 1.5rem;
     margin-right: 1.5rem;
-  }
+  } */
 }
 
 @media only screen and (min-width: 1023px) {
-  .options-container {
+  /* .options-container {
     grid-template-columns: 1fr 16fr 1fr;
-    grid-template-rows: 3fr 0.5fr 1fr 0.5fr 1fr;
+    grid-template-rows: 0.5fr 1fr 0.5fr 1fr;
     grid-template-areas: 
       ". radio-buttons ."
       ". continent-filter ."
@@ -216,7 +232,7 @@ body {
       ". country-filter ."
       ". country-select ."	
     ;
-  }
+  } */
   }
 
 @media only screen and (min-width: 600px) and (max-width: 1022px) {
@@ -226,9 +242,9 @@ body {
   }
 
 
-  .options-container {
+  /* .options-container {
     grid-template-columns: 1fr 16fr 1fr;
-    grid-template-rows: 8fr 0.8fr 2fr 0.8fr 2fr;
+    grid-template-rows: 0.8fr 2fr 0.8fr 2fr;
     grid-template-areas: 
       ". radio-buttons ."
       ". continent-filter ."
@@ -236,7 +252,7 @@ body {
       ". country-filter ."
       ". country-select ."	
     ;
-  }
+  } */
 }
 
 
@@ -244,16 +260,12 @@ body {
   .radio-group{
     margin-bottom: 2rem;
   }
-  .chart-container {
-    margin-left: 1rem;
-    margin-right: 1rem;
-  }
 
   .options-container {
+    display: grid;
     grid-template-columns: 1fr 16fr 1fr;
-    grid-template-rows: 6fr 0.8fr 1fr 0.8fr 1fr;
+    grid-template-rows: 0.5fr 1fr 0.5fr 1fr;
     grid-template-areas: 
-      ". radio-buttons ."
       ". continent-filter ."
       ". continent-select ."	
       ". country-filter ."

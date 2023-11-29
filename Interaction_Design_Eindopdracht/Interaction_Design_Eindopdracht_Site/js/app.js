@@ -1,12 +1,21 @@
 let baseUrl = "https://localhost:7284";
 let data = [];
 let continentData = [];
-let chartInstance;
+let chartInstances = {};
 let chartType = "bar";
+// Colors for each dataset
+const scatterColor = "rgba(255, 0, 0, 1)";
+const iqColor = "rgba(75, 192, 192, 0.2)";
+const iqBorderColor = "rgba(75, 192, 192, 1)";
+const expenditureColor = "rgba(255, 99, 132, 0.2)";
+const expenditureBorderColor = "rgba(255, 99, 132, 1)";
+const incomeColor = "rgba(255, 205, 86, 0.2)";
+const incomeBorderColor = "rgba(255, 205, 86, 1)";
+const temperatureColor = "rgba(169, 169, 169, 0.2)";
+const temperatureBorderColor = "rgba(169, 169, 169, 1)";
 
 async function fetchData() {
   try {
-    // const response = await fetch(`${baseUrl}/api/Iq/money-divided-by-1000`);
     const response = await fetch("./data/UpdatedData.json");
     const result = await response.json();
     data = result.map((entry) => ({
@@ -19,7 +28,7 @@ async function fetchData() {
     }));
     populateContinentList();
     populateCountryList();
-    redrawChart();
+    drawCharts(); // Draw all charts after fetching data
   } catch (error) {
     console.error("Error fetching data:", error);
   }
@@ -31,10 +40,12 @@ function populateCountryList() {
   const select = $("#countrySelect");
 
   let selectedCountriesToKeep;
-  
+
   if (selectedContinents.length > 0) {
-    selectedCountriesToKeep = data.filter((entry) =>
-      selectedContinents.includes(entry.continent) && selectedCountries.includes(entry.country)
+    selectedCountriesToKeep = data.filter(
+      (entry) =>
+        selectedContinents.includes(entry.continent) &&
+        selectedCountries.includes(entry.country)
     );
   } else {
     selectedCountriesToKeep = data.filter((entry) =>
@@ -42,9 +53,10 @@ function populateCountryList() {
     );
   }
 
-  const countriesToKeep = selectedContinents.length > 0
-    ? data.filter((entry) => selectedContinents.includes(entry.continent))
-    : data;
+  const countriesToKeep =
+    selectedContinents.length > 0
+      ? data.filter((entry) => selectedContinents.includes(entry.continent))
+      : data;
 
   // Remove options that are not in countriesToKeep
   select.find("option").each(function () {
@@ -78,12 +90,11 @@ function populateCountryList() {
   sortSelect(select[0]);
 
   // Extract an array of country values from selectedCountriesToKeep
-  const countryValues = selectedCountriesToKeep.map(entry => entry.country);
+  const countryValues = selectedCountriesToKeep.map((entry) => entry.country);
 
   // Set default values for the country selection
   select.val(countryValues).trigger("change");
 }
-
 
 function populateContinentList() {
   const select = $("#continentSelect");
@@ -126,37 +137,156 @@ function sortSelect(selElem) {
   }
   return;
 }
+function drawCharts() {
+  const scatterTempIqCanvas = document.getElementById("myScatterTempIq");
+  const scatterEdIqCanvas = document.getElementById("myScatterEdIq");
+  const scatterEdINCanvas = document.getElementById("myScatterEdIN");
+  const barChartCanvas = document.getElementById("myBarChart");
 
-// Add a new event listener for continent filter button
+  // Destroy existing chart instances before creating new ones
+  if (chartInstances.myScatterTempIq) {
+    chartInstances.myScatterTempIq.destroy();
+  }
+  if (chartInstances.myScatterEdIq) {
+    chartInstances.myScatterEdIq.destroy();
+  }
+  if (chartInstances.myScatterEdIN) {
+    chartInstances.myScatterEdIN.destroy();
+  }
+  if (chartInstances.myBarChart) {
+    chartInstances.myBarChart.destroy();
+  }
+
+  if (
+    scatterTempIqCanvas &&
+    scatterEdIqCanvas &&
+    scatterEdINCanvas &&
+    barChartCanvas
+  ) {
+    const scatterTempIqCtx = scatterTempIqCanvas.getContext("2d");
+    const scatterEdIqCtx = scatterEdIqCanvas.getContext("2d");
+    const scatterEdINCtx = scatterEdINCanvas.getContext("2d");
+    const barChartCtx = barChartCanvas.getContext("2d");
+
+    // Draw scatter plots
+    chartInstances.myScatterTempIq = createScatterPlot(
+      scatterTempIqCtx,
+      data.map((entry) => entry.avgTemp),
+      data.map((entry) => entry.iq),
+      scatterColor,
+      "Temperature vs IQ",
+      "average temperature (°C)",
+      "IQ",
+      false
+    );
+
+    chartInstances.myScatterEdIq = createScatterPlot(
+      scatterEdIqCtx,
+      data.map((entry) => entry.educationExpenditure),
+      data.map((entry) => entry.iq),
+      scatterColor,
+      "Education Expenditure vs IQ",
+      "Education Expenditure (per capita in thousands $)",
+      "IQ",
+      false
+    );
+
+    chartInstances.myScatterEdIN = createScatterPlot(
+      scatterEdINCtx,
+      data.map((entry) => entry.educationExpenditure),
+      data.map((entry) => entry.avgIncome),
+      scatterColor,
+      "Education Expenditure vs Average Income",
+      "Education Expenditure (per capita in thousands $)",
+      "Average Income (Thousands $)",
+      false
+    );
+    // Draw bar chart
+    chartInstances.myBarChart = createBarChart(
+      barChartCtx,
+      data.map((entry) => entry.country),
+      data.map((entry) => entry.iq),
+      data.map((entry) => entry.educationExpenditure),
+      data.map((entry) => entry.avgIncome),
+      data.map((entry) => entry.avgTemp),
+      false
+    );
+  }
+}
+
+// Function to create scatter plotfunction 
+function createScatterPlot(ctx, xData, yData, color, label, xLabel, yLabel, isMobile) {
+  return new Chart(ctx, {
+    type: "scatter",
+    data: {
+      labels: xData,
+      datasets: [
+        {
+          label: label,
+          data: xData.map((_, index) => ({ x: xData[index], y: yData[index] })),
+          backgroundColor: color,
+          borderColor: color,
+        },
+      ],
+    },
+    options: {
+      plugins: {
+        legend: {
+          display: true,
+          position: "top",
+          align: "center",
+          textDirection: "ltr",
+          labels: {
+            color: "rgb(255, 99, 132)",
+          },
+        },
+      },
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          type: "linear",
+          position: isMobile ? "top" : "bottom",
+          title: {
+            display: true,
+            text: xLabel, // Add your X-Axis label here
+            color: "black",
+          },
+        },
+        y: {
+          type: "linear",
+          position: "left",
+          title: {
+            display: true,
+            text: yLabel, // Add your Y-Axis label here
+            color: "black",
+          },
+        },
+      },
+    },
+  });
+}
+
+
 
 function redrawChart() {
   const selectedCountries = $("#countrySelect").val();
   const selectedContinent = $("#continentSelect").val();
 
-  console.log(selectedCountries);
-  console.log(selectedContinent);
-
-  // Call the createChart function with selected countries and continent
-  createChart(selectedCountries, selectedContinent);
+  drawCharts();
+  // Draw the selected chart type
+  createFilteredChart(
+    selectedCountries,
+    selectedContinent
+  );
 }
-// Colors for each dataset
-const iqColor = "rgba(75, 192, 192, 0.2)";
-const iqBorderColor = "rgba(75, 192, 192, 1)";
 
-const expenditureColor = "rgba(255, 99, 132, 0.2)";
-const expenditureBorderColor = "rgba(255, 99, 132, 1)";
+function createFilteredChart(selectedCountries = [], selectedContinent = []) {
+  const barChartCanvas = document.getElementById("myBarChart");
+  if (chartInstances.myBarChart) {
+    chartInstances.myBarChart.destroy();
+  }
 
-const incomeColor = "rgba(255, 205, 86, 0.2)";
-const incomeBorderColor = "rgba(255, 205, 86, 1)";
-
-const temperatureColor = "rgba(169, 169, 169, 0.2)";
-const temperatureBorderColor = "rgba(169, 169, 169, 1)";
-
-const scatterColor = "rgba(255, 0, 0, 1)"; // Customize the scatter plot color
-
-function createChart(selectedCountries = [], selectedContinent = []) {
-  const canvas = document.getElementById("myChart");
-  const ctx = canvas.getContext("2d");
+  const ctx = barChartCanvas.getContext("2d");
 
   const filteredData = data.filter(
     (entry) =>
@@ -179,36 +309,21 @@ function createChart(selectedCountries = [], selectedContinent = []) {
   const isMobile = window.outerWidth <= 600;
 
   if (isMobile && chartType === "bar") {
-    canvas.style = "height: 100vh";
+    barChartCanvas.style = "height: 100vh";
   } else {
-    canvas.style = "height: 37.5rem";
+    barChartCanvas.style = "height: 37.5rem";
   }
-
-  // Destroy the existing chart if it exists
-  if (chartInstance) {
-    chartInstance.destroy();
-  }
-
-  if (chartType === "bar") {
-    chartInstance = createBarChart(
-      ctx,
-      countries,
-      iqData,
-      expenditureData,
-      incomeData,
-      temperatureData,
-      isMobile
-    );
-  } else if (chartType === "scatter1") {
-    createScatterPlot1(ctx, temperatureData, iqData, isMobile);
-  } else if (chartType === "scatter2") {
-    createScatterPlot2(ctx, expenditureData, iqData, isMobile);
-  } else if (chartType === "scatter3") {
-    createScatterPlot3(ctx, expenditureData, incomeData, isMobile);
-  }
+  chartInstances.myBarChart = createBarChart(
+    ctx,
+    countries,
+    iqData,
+    expenditureData,
+    incomeData,
+    temperatureData,
+    isMobile
+  );
 }
 
-// Create the bar chart
 function createBarChart(
   ctx,
   countries,
@@ -273,7 +388,6 @@ function createBarChart(
         },
       },
       maintainAspectRatio: false,
-      // indexAxis: isMobile ? "y" : "x",
       indexAxis: isMobile ? "y" : "x",
       scales: {
         x: {
@@ -288,191 +402,25 @@ function createBarChart(
   });
 }
 
-
-// Helper functions to create scatter plots
-// Scatter Plot 1: Temperature vs IQ
-function createScatterPlot1(ctx, xData, yData, isMobile) {
-  // Filter out 0 values
-  const filteredData = xData.reduce(
-    (result, value, index) => {
-      if (value !== 0 && yData[index] !== 0) {
-        result.x.push(value);
-        result.y.push(yData[index]);
-      }
-      return result;
-    },
-    { x: [], y: [] }
-  );
-
-  chartInstance = new Chart(ctx, {
-    type: "scatter",
-    data: {
-      datasets: [
-        {
-          label: "Temperature vs IQ",
-          data: filteredData.x.map((value, index) => ({
-            x: value,
-            y: filteredData.y[index],
-          })),
-          backgroundColor: scatterColor,
-          pointRadius: 6,
-        },
-      ],
-    },
-    options: {
-      maintainAspectRatio: false,
-      scales: {
-        x: {
-          type: "linear",
-          position: isMobile ? "top" : "bottom",
-          title: {
-            display: true,
-            text: "average temperature (°C)",
-          },
-        },
-        y: {
-          type: "linear",
-          position: "left",
-          title: {
-            display: true,
-            text: "IQ",
-          },
-        },
-      },
-    },
-  });
-}
-
-// Scatter Plot 2: Education Expenditure vs IQ
-function createScatterPlot2(ctx, xData, yData, isMobile) {
-  // Filter out 0 values
-  const filteredData = xData.reduce(
-    (result, value, index) => {
-      if (value !== 0 && yData[index] !== 0) {
-        result.x.push(value);
-        result.y.push(yData[index]);
-      }
-      return result;
-    },
-    { x: [], y: [] }
-  );
-
-  chartInstance = new Chart(ctx, {
-    type: "scatter",
-    data: {
-      datasets: [
-        {
-          label: "Education Expenditure vs IQ",
-          data: filteredData.x.map((value, index) => ({
-            x: value,
-            y: filteredData.y[index],
-          })),
-          backgroundColor: scatterColor,
-          pointRadius: 6,
-        },
-      ],
-    },
-    options: {
-      maintainAspectRatio: false,
-      scales: {
-        x: {
-          type: "linear",
-          position: isMobile ? "top" : "bottom",
-          title: {
-            display: true,
-            text: "Education Expenditure (per capita in thousands $)",
-          },
-        },
-        y: {
-          type: "linear",
-          position: "left",
-          title: {
-            display: true,
-            text: "IQ",
-          },
-        },
-      },
-    },
-  });
-}
-
-// Scatter Plot 3: Education Expenditure vs Average Income
-function createScatterPlot3(ctx, xData, yData, isMobile) {
-  // Filter out 0 values
-  const filteredData = xData.reduce(
-    (result, value, index) => {
-      if (value !== 0 && yData[index] !== 0) {
-        result.x.push(value);
-        result.y.push(yData[index]);
-      }
-      return result;
-    },
-    { x: [], y: [] }
-  );
-
-  chartInstance = new Chart(ctx, {
-    type: "scatter",
-    data: {
-      datasets: [
-        {
-          label: "Education Expenditure vs Average Income",
-          data: filteredData.x.map((value, index) => ({
-            x: value,
-            y: filteredData.y[index],
-          })),
-          backgroundColor: scatterColor,
-          pointRadius: 6,
-        },
-      ],
-    },
-    options: {
-      maintainAspectRatio: false,
-      scales: {
-        x: {
-          type: "linear",
-          position: isMobile ? "top" : "bottom",
-          title: {
-            display: true,
-            text: "Education Expenditure (per capita in thousands $)",
-          },
-        },
-        y: {
-          type: "linear",
-          position: "left",
-          title: {
-            display: true,
-            text: "Average Income (Thousands $)",
-          },
-        },
-      },
-    },
-  });
-}
-
-// Modify the redrawChart function to pass the selected chart type
-function redrawChart() {
-  const selectedCountries = $("#countrySelect").val();
-  const selectedContinent = $("#continentSelect").val();
-
-  console.log(selectedCountries);
-  console.log(selectedContinent);
-
-  // Call the createChart function with selected countries, continent, and chart type
-  createChart(selectedCountries, selectedContinent);
-}
-
 $(document).ready(function () {
   const isMobile = window.outerWidth <= 600;
   const resizeEvent = isMobile ? "orientationchange" : "resize";
 
-  redrawChart(); //this is needed to fix the bug where media query is not working even tho fetch data calls redrawChart
+  // Initialize chart instances object
+  chartInstances = {
+    myChart: null,
+    myScatterTempIq: null,
+    myScatterEdIq: null,
+    myScatterEdIN: null,
+  };
+
+  
+
+  redrawChart(); //this is needed to fix the bug where media query is not working even though fetch data calls redrawChart
 
   $(window).on(resizeEvent, redrawChart);
 
-  $('input[name="chartType"]').on("change", function () {
-    chartType = $('input[name="chartType"]:checked').val();
-    redrawChart();
-  });
+  $('input[name="chartType"]').on("change", redrawChart);
 
   // Add event listener for removing country filter button
   let countryRemoveFilterButton = $(".js-button-filter-country-remove");
@@ -482,9 +430,9 @@ $(document).ready(function () {
     redrawChart();
   });
 
-  $("#countrySelect").on("change", function () {
-    redrawChart();
-  });
+
+
+  $("#countrySelect").on("change", redrawChart);
 
   // Add a new event listener for removing continent filter button
   let continentRemoveFilterButton = $(".js-button-filter-continent-remove");
@@ -494,9 +442,7 @@ $(document).ready(function () {
     redrawChart();
   });
 
-  $("#continentSelect").on("change", function () {
-    redrawChart();
-  });
+  $("#continentSelect").on("change", redrawChart);
 
   // Call the fetchData function
   fetchData();
