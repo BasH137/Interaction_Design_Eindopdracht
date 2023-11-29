@@ -88,6 +88,9 @@ function populateCountryList() {
 
   // Initialize Select2
   select.select2();
+  select.name = "countrySelectSeachField";
+  var select2Input = select.next().find('.select2-search__field');
+  select2Input.attr('name', 'countrytSelectSeachField');
   sortSelect(select[0]);
 
   // Extract an array of country values from selectedCountriesToKeep
@@ -110,6 +113,8 @@ function populateContinentList() {
 
   // Initialize Select2
   select.select2();
+  var select2Input = select.next().find('.select2-search__field');
+    select2Input.attr('name', 'continentSelectSeachField');
 
   // Add event listener to continent select
   select.on("change", function () {

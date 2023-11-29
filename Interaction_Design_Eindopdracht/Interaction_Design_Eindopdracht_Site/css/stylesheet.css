@@ -1,5 +1,6 @@
 :root {
-  --primary-color: #3498db;
+  /* --primary-color: #3498db; */
+  --primary-color: #1976D2;;
   --link-color: var(--primary-color);
 
   --hover-color: #bee1f8;
@@ -92,16 +93,6 @@ h3 {
 .select-country {
   margin-bottom: 1rem;
 }
-
-/* .select-container {
-  display: flex;
-  justify-content: center;
-  align-items: start;
-  align-items: center;
-  gap: 1rem;
-  height: 50%;
-
-} */
 
 .select2-container .select2-selection--multiple {
   max-height: 9.375rem;

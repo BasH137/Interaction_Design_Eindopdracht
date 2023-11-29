@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Unveiling Global Dynamics</title>
+    <title id="documentTitle">Unveiling Global Dynamics</title>
     <link rel="icon" href="./data/Images/brain-emoji.png" type="image/png">
     <link rel="stylesheet" href="css/stylesheet.css" />
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
@@ -13,59 +13,58 @@
 
 <body class="grid-container">
 
-    <h1 class="title">Unveiling Global Dynamics: A Tale of IQ, Education, and Economic Prowess</h1>
+    <h1 class="title" aria-labelledby="documentTitle">Unveiling Global Dynamics: A Tale of IQ, Education, and Economic Prowess</h1>
 
-    <h2 class="prose-center">Introduction</h2>
+    <h2 class="prose-center" aria-label="Introduction">Introduction</h2>
     <p class="prose-center">Embark on a captivating journey as we unravel the intricate tapestry of global trends, examining the fascinating relationships between average IQ, education expenditure, average income, and the diverse landscapes of our world. This exploration promises to uncover nuanced patterns that offer insights into the interplay of intelligence, education, and socioeconomic prosperity.</p>
 
     <p class="prose-center">Dataset Source:
       <a href="https://www.kaggle.com/datasets/abhijitdahatonde/worldwide-average-iq-levels" target="_blank">Kaggle</a>
   </p>
 
-    <h2 class="prose-center">Climate's Whims and Cognitive Quotient</h2>
+    <h2 class="prose-center" aria-label="Climate's Whims and Cognitive Quotient">Climate's Whims and Cognitive Quotient</h2>
 
-    <h3 class="prose-center">The Dance of Temperature and IQ</h3>
+    <h3 class="prose-center" aria-label="The Dance of Temperature and IQ">The Dance of Temperature and IQ</h3>
     <p class="prose-center">As our analytical lens focuses on the data, an intriguing pattern unfolds—a potential connection between average temperature and average IQ. Contrary to conventional wisdom, it appears that as temperatures rise, average IQ tends to exhibit a curious descent. Let's visually explore this unexpected correlation:</p>
 
-    <div class="chart-container">
+    <div class="chart-container" aria-label="Scatter plot of Temperature and IQ">
       <canvas id="myScatterTempIq" class="chart"></canvas>
     </div>
 
     <p class="prose-center">The scatter plot paints a vivid picture of the inverse relationship between temperature and IQ, prompting contemplation on the impact of climate on cognitive abilities.</p>
 
-    <h2 class="prose-center">Nurturing Minds: The Power of Education Expenditure</h2>
+    <h2 class="prose-center" aria-label="Nurturing Minds: The Power of Education Expenditure">Nurturing Minds: The Power of Education Expenditure</h2>
 
-    <h3 class="prose-center">Investing in Intelligence: Education Expenditure vs IQ</h3>
+    <h3 class="prose-center" aria-label="Investing in Intelligence: Education Expenditure vs IQ">Investing in Intelligence: Education Expenditure vs IQ</h3>
     <p class="prose-center">Our journey continues as we delve into the pivotal role of education expenditure in shaping intelligence. The data hints at a promising correlation: higher investment in education aligns with elevated average IQ. Let's chart this intellectual voyage:</p>
 
-    <div class="chart-container">
+    <div class="chart-container" aria-label="Scatter plot of Education Expenditure and IQ">
       <canvas id="myScatterEdIq" class="chart"></canvas>
     </div>
 
     <p class="prose-center">The scatter plot elegantly illustrates the upward trajectory, underscoring the significance of robust education spending in fostering cognitive development.</p>
 
-    <h3 class="prose-center">Beyond Intelligence: Education Expenditure vs Average Income</h3>
+    <h3 class="prose-center" aria-label="Beyond Intelligence: Education Expenditure vs Average Income">Beyond Intelligence: Education Expenditure vs Average Income</h3>
     <p class="prose-center">However, does the investment in education merely elevate intellectual prowess, or does it extend its wings to economic prosperity? The answer unfolds as we scrutinize the connection between education expenditure and average income:</p>
 
-    <div class="chart-container">
+    <div class="chart-container" aria-label="Scatter plot of Education Expenditure and Average Income">
       <canvas id="myScatterEdIN" class="chart"></canvas>
     </div>
 
     <p class="prose-center">This plot uncovers a positive correlation, signaling that nations prioritizing education not only boast higher IQs but also enjoy enhanced economic well-being.</p>
 
-    <h2 class="prose-center">Global Comparison: Bar Chart Extravaganza</h2>
+    <h2 class="prose-center" aria-label="Global Comparison: Bar Chart Extravaganza">Global Comparison: Bar Chart Extravaganza</h2>
 
     <p class="prose-center">To provide a comprehensive overview, let's turn our attention to a bar chart that enables you to compare countries and continents based on various metrics. You have the power to explore and compare at your fingertips, allowing for a more nuanced understanding of the global landscape.</p>
 
   
-    <div class="options-container prose-center">
+    <div class="options-container prose-center" aria-label="Filter options">
       <label id="continentFilterLabel" for="continentSelect" class="select-label">Filter Continents</label>
       <div id="continentFilterContainer" class="select-container">
-        <select name="continentFilter" id="continentSelect" class="select-input" multiple="multiple">
-        </select>
+        <select name="continentFilter" id="continentSelect" class="select-input" multiple="multiple" aria-labelledby="continentFilterLabel"></select>
       </div>
 
-      <button type="button" class="btn-delete js-button-filter-continent-remove">
+      <button type="button" class="btn-delete js-button-filter-continent-remove" aria-label="Remove Continent Filter">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
           <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"></path>
           <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"></path>
@@ -74,11 +73,10 @@
   
       <label id="countryFilterLabel" for="countrySelect" class="select-label">Filter Countries</label>
       <div id="countryFilterContainer" class="select-container select-country">
-        <select name="countryFilter" id="countrySelect" class="select-input" multiple="multiple">
-        </select>
+        <select name="countryFilter" id="countrySelect" class="select-input" multiple="multiple" aria-labelledby="countryFilterLabel"></select>
       </div>
 
-      <button type="button" class="btn-delete js-button-filter-country-remove">
+      <button type="button" class="btn-delete js-button-filter-country-remove" aria-label="Remove Country Filter">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
           <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"></path>
           <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"></path>
@@ -86,17 +84,17 @@
       </button>
     </div>
   
-    <div class="chart-container">
+    <div class="chart-container" aria-label="Global Comparison Bar Chart">
       <canvas id="myBarChart" class="chart"></canvas>
     </div>
 
-    <h2 class="prose-center">Synthesis and Reflection</h2>
+    <h2 class="prose-center" aria-label="Synthesis and Reflection">Synthesis and Reflection</h2>
 
     <p class="prose-center">Our expedition through the data has revealed captivating connections between climate, education, intelligence, and economic prosperity. As temperatures ascend, IQ tends to descend, while a steadfast commitment to education emerges as a beacon, illuminating the path to both intellectual acumen and financial flourishing.</p>
 
     <p class="prose-center">This narrative-rich approach seeks not only to present data but also to weave a compelling story that captivates the audience, providing context and profound insights into the intricate patterns and correlations within the dataset. Feel free to adapt the structure and content to suit your audience and communication objectives.</p>
 
-    <footer>
+    <footer aria-label="Footer">
       <p class="prose-center footer">&copy; 2023 Howest. All Rights Waived. | Designed by Bas Van Massenhove</p>
     </footer>
 
