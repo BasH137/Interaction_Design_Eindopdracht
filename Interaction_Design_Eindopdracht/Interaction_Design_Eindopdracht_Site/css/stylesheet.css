@@ -1,33 +1,39 @@
 :root {
   --primary-color: #3498db;
+  --link-color: var(--primary-color);
+
   --hover-color: #bee1f8;
   --text-white: #fff;
-  --text-black: black;
+  --text-black: #333333;
   --responsive-margin-body: 8rem;
   --font-size-largest: 1.5rem;
   --header2-font-size: 1.2rem;
   --font-size: 1rem;
   --header3-font-size: var(--font-size);
   --line-height: 1.6;
-  
-  --background-color: #F5F5F5;
-  --link-color: var(--primary-color);
-  
-  --accent-red:#E74C3C; /* used in js  */
+
+  --background-color: #f5f5f5;
+
+  --accent-red: #e74c3c;
   --delete-red: var(--accent-red);
+
+  --font-family-fallback: "Arial", sans-serif;
+  --font-family-primary: "Publico Text Web";
+  --font-family-title: "Canela Web";
+  --font-family-header: "Atlas Grotesk Web";
 }
 
 a {
-  color: var(--link-color); /* Accent color for links */
+  color: var(--link-color);
 }
 
 body {
-  font-family: "Arial", sans-serif;
+  font-family: var(--font-family-fallback);
   margin: 0;
   padding: 0;
   font-size: var(--font-size);
   line-height: var(--line-height);
-
+  color: var(--text-black);
   background-color: var(--background-color);
 }
 
@@ -35,9 +41,9 @@ body {
   max-width: 40rem;
   margin: 0 auto;
   margin-bottom: 1.3em;
-  font-size: 1rem;
+  font-size: var(--font-size);
   line-height: var(--line-height);
-  font-family: "Publico Text Web";
+  font-family: var(--font-family-primary);
 }
 
 .title {
@@ -46,19 +52,20 @@ body {
   margin-bottom: calc(var(--responsive-margin-body) / 2);
   font-size: var(--font-size-largest);
   text-align: center;
-  font-family: "Canela Web";
+  font-family: var(--font-family-title);
+  color: var(--primary-color);
 }
 
 h2,
 h3 {
-  font-family: 'Atlas Grotesk Web';
+  font-family: var(--font-family-header);
   font-size: var(--header2-font-size) !important;
+  color: var(--primary-color);
 }
 
 h3 {
   font-size: var(--header3-font-size) !important;
 }
-
 
 .chart-container {
   margin-left: var(--responsive-margin-body);
@@ -82,14 +89,14 @@ h3 {
 } */
 
 .select2-container .select2-selection--multiple {
-  max-height: 150px; 
-  overflow-y: auto; 
+  max-height: 9.375rem;
+  overflow-y: auto;
 }
 
 .select2-container .select2-selection__rendered {
-  white-space: nowrap; /* Prevent selected items from wrapping */
-  overflow: hidden; /* Hide any overflow */
-  text-overflow: ellipsis; /* Display ellipsis (...) for truncated text */
+  white-space: nowrap;
+  overflow: hidden; 
+  text-overflow: ellipsis; 
 }
 
 .select-input {
@@ -100,19 +107,9 @@ h3 {
   box-sizing: border-box;
 }
 
-/* .options-container {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 0.5fr 1fr 0.5fr 1fr;
-  grid-template-areas:
-  ". continent-filter ."
-  ". continent-select ."
-  ". country-filter ."
-  ". country-select .";
-} */
 .options-container {
   display: grid;
-  grid-template-columns: 9fr 1fr; 
+  grid-template-columns: 9fr 1fr;
   grid-template-rows: 0.5fr auto 0.5fr auto;
   grid-template-areas:
     "continent-filter ."
@@ -165,7 +162,7 @@ h3 {
   margin-left: 1rem;
   margin-bottom: 1rem;
 
-  height: 36.2px;
+  height: 36.2px;  /* same as select */
 }
 
 .btn-delete:hover {
@@ -180,6 +177,11 @@ h3 {
 }
 .select2-selection__choice__remove {
   color: var(--delete-red) !important;
+}
+
+.footer{
+  text-align: center;
+  font-size: 0.8rem;
 }
 
 @media only screen and (max-width: 800px) {
