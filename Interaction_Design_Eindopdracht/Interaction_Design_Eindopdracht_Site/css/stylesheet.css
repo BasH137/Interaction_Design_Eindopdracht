@@ -172,7 +172,7 @@ h3 {
   padding: 0.25rem 0.5rem;
   border-radius: 0.3125rem;
   cursor: pointer;
-  transition: background-color 0.3s, color 0.3s, border 0.3s, transform 0.2s ease-in-out;
+  transition: background-color 0.3s ease-out, color 0.3s ease-out, border 0.3s ease-out, transform 0.2s ease-out, box-shadow 0.3s ease-out;
 
   margin-left: 1rem;
   margin-bottom: 1rem;
@@ -184,8 +184,16 @@ h3 {
   background-color: var(--delete-red);
   color: var(--text-white);
   border: 1px solid var(--delete-red);
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  opacity: 0.9;
+}
 
-  transform: scale(1.1);
+.btn-delete:active {
+  background-color: darken(var(--delete-red), 10%);
+  transform: scale(0.95);
+  box-shadow: none;
+  transition-duration: 0.1s;
 }
 
 .select2-selection__choice {
