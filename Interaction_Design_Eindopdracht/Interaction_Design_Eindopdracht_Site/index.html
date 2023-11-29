@@ -11,55 +11,55 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-<body class="grid-container responsive-margin">
+<body class="grid-container">
 
-    <h1>Unveiling Global Dynamics: A Tale of IQ, Education, and Economic Prowess</h1>
+    <h1 class="prose-center title">Unveiling Global Dynamics: A Tale of IQ, Education, and Economic Prowess</h1>
 
-    <h2>Introduction</h2>
-    <p>Embark on a captivating journey as we unravel the intricate tapestry of global trends, examining the fascinating relationships between average IQ, education expenditure, average income, and the diverse landscapes of our world. This exploration promises to uncover nuanced patterns that offer insights into the interplay of intelligence, education, and socioeconomic prosperity.</p>
+    <h2 class="prose-center">Introduction</h2>
+    <p class="prose-center">Embark on a captivating journey as we unravel the intricate tapestry of global trends, examining the fascinating relationships between average IQ, education expenditure, average income, and the diverse landscapes of our world. This exploration promises to uncover nuanced patterns that offer insights into the interplay of intelligence, education, and socioeconomic prosperity.</p>
 
-    <p><strong>Dataset Source:</strong> 
+    <p class="prose-center"><strong>Dataset Source:</strong> 
       <a href="https://www.kaggle.com/datasets/abhijitdahatonde/worldwide-average-iq-levels" target="_blank">Kaggle</a>
   </p>
 
-    <h2>Climate's Whims and Cognitive Quotient</h2>
+    <h2 class="prose-center">Climate's Whims and Cognitive Quotient</h2>
 
-    <h3>The Dance of Temperature and IQ</h3>
-    <p>As our analytical lens focuses on the data, an intriguing pattern unfolds—a potential connection between average temperature and average IQ. Contrary to conventional wisdom, it appears that as temperatures rise, average IQ tends to exhibit a curious descent. Let's visually explore this unexpected correlation:</p>
+    <h3 class="prose-center">The Dance of Temperature and IQ</h3>
+    <p class="prose-center">As our analytical lens focuses on the data, an intriguing pattern unfolds—a potential connection between average temperature and average IQ. Contrary to conventional wisdom, it appears that as temperatures rise, average IQ tends to exhibit a curious descent. Let's visually explore this unexpected correlation:</p>
 
     <div class="chart-container">
       <canvas id="myScatterTempIq" class="chart"></canvas>
     </div>
 
-    <p>The scatter plot paints a vivid picture of the inverse relationship between temperature and IQ, prompting contemplation on the impact of climate on cognitive abilities.</p>
+    <p class="prose-center">The scatter plot paints a vivid picture of the inverse relationship between temperature and IQ, prompting contemplation on the impact of climate on cognitive abilities.</p>
 
-    <h2>Nurturing Minds: The Power of Education Expenditure</h2>
+    <h2 class="prose-center">Nurturing Minds: The Power of Education Expenditure</h2>
 
-    <h3>Investing in Intelligence: Education Expenditure vs IQ</h3>
-    <p>Our journey continues as we delve into the pivotal role of education expenditure in shaping intelligence. The data hints at a promising correlation: higher investment in education aligns with elevated average IQ. Let's chart this intellectual voyage:</p>
+    <h3 class="prose-center">Investing in Intelligence: Education Expenditure vs IQ</h3>
+    <p class="prose-center">Our journey continues as we delve into the pivotal role of education expenditure in shaping intelligence. The data hints at a promising correlation: higher investment in education aligns with elevated average IQ. Let's chart this intellectual voyage:</p>
 
     <div class="chart-container">
       <canvas id="myScatterEdIq" class="chart"></canvas>
     </div>
 
-    <p>The scatter plot elegantly illustrates the upward trajectory, underscoring the significance of robust education spending in fostering cognitive development.</p>
+    <p class="prose-center">The scatter plot elegantly illustrates the upward trajectory, underscoring the significance of robust education spending in fostering cognitive development.</p>
 
-    <h3>Beyond Intelligence: Education Expenditure vs Average Income</h3>
-    <p>However, does the investment in education merely elevate intellectual prowess, or does it extend its wings to economic prosperity? The answer unfolds as we scrutinize the connection between education expenditure and average income:</p>
+    <h3 class="prose-center">Beyond Intelligence: Education Expenditure vs Average Income</h3>
+    <p class="prose-center">However, does the investment in education merely elevate intellectual prowess, or does it extend its wings to economic prosperity? The answer unfolds as we scrutinize the connection between education expenditure and average income:</p>
 
     <div class="chart-container">
       <canvas id="myScatterEdIN" class="chart"></canvas>
     </div>
 
-    <p>This plot uncovers a positive correlation, signaling that nations prioritizing education not only boast higher IQs but also enjoy enhanced economic well-being.</p>
+    <p class="prose-center">This plot uncovers a positive correlation, signaling that nations prioritizing education not only boast higher IQs but also enjoy enhanced economic well-being.</p>
 
-    <h2>Global Comparison: Bar Chart Extravaganza</h2>
+    <h2 class="prose-center">Global Comparison: Bar Chart Extravaganza</h2>
 
-    <p class="margin-bottom-m">To provide a comprehensive overview, let's turn our attention to a bar chart that enables you to compare countries and continents based on various metrics. You have the power to explore and compare at your fingertips, allowing for a more nuanced understanding of the global landscape.</p>
+    <p class="margin-bottom-m prose-center">To provide a comprehensive overview, let's turn our attention to a bar chart that enables you to compare countries and continents based on various metrics. You have the power to explore and compare at your fingertips, allowing for a more nuanced understanding of the global landscape.</p>
 
   
-    <div class="options-container">
-      <label id="continentFilterLabel" for="continentSelect" class="select-label">Filter Continents</label>
+    <div class="options-container prose-center">
+      <label id="continentFilterLabel" for="continentSelect" class="select-label prose-center">Filter Continents</label>
       <div id="continentFilterContainer" class="select-container">
         <select name="continentFilter" id="continentSelect" class="select-input" multiple="multiple">
   
@@ -72,7 +72,7 @@
         </button>
       </div>
   
-      <label id="countryFilterLabel" for="countrySelect" class="select-label">Filter Countries</label>
+      <label id="countryFilterLabel" for="countrySelect" class="select-label prose-center">Filter Countries</label>
       <div id="countryFilterContainer" class="select-container select-country">
         <select name="countryFilter" id="countrySelect" class="select-input" multiple="multiple">
   
@@ -86,17 +86,15 @@
       </div>
     </div>
   
-  
     <div class="chart-container">
       <canvas id="myBarChart" class="chart"></canvas>
     </div>
 
-    <h2>Synthesis and Reflection</h2>
+    <h2 class="prose-center">Synthesis and Reflection</h2>
 
-    <p>Our expedition through the data has revealed captivating connections between climate, education, intelligence, and economic prosperity. As temperatures ascend, IQ tends to descend, while a steadfast commitment to education emerges as a beacon, illuminating the path to both intellectual acumen and financial flourishing.</p>
+    <p class="prose-center">Our expedition through the data has revealed captivating connections between climate, education, intelligence, and economic prosperity. As temperatures ascend, IQ tends to descend, while a steadfast commitment to education emerges as a beacon, illuminating the path to both intellectual acumen and financial flourishing.</p>
 
-    <p>This narrative-rich approach seeks not only to present data but also to weave a compelling story that captivates the audience, providing context and profound insights into the intricate patterns and correlations within the dataset. Feel free to adapt the structure and content to suit your audience and communication objectives.</p>
-
+    <p class="prose-center">This narrative-rich approach seeks not only to present data but also to weave a compelling story that captivates the audience, providing context and profound insights into the intricate patterns and correlations within the dataset. Feel free to adapt the structure and content to suit your audience and communication objectives.</p>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
