@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\Interaction_Design_Eindopdracht_Api.props" />
-</Project>

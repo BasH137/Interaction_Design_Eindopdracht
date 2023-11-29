@@ -55,15 +55,6 @@ body {
 }
 .options-container {
   display: grid;
-  grid-template-columns: 3fr 8fr 3fr;
-  grid-template-rows: 2fr 0.5fr 1fr 0.5fr 1fr;
-  grid-template-areas: 
-    ". radio-buttons ."
-    ". continent-filter ."
-    ". continent-select ."	
-    ". country-filter ."
-    ". country-select ."	
-  ;
 }
 
 .radio-group {
@@ -179,6 +170,8 @@ body {
   }
 }
 
+
+
 @media only screen and (max-width: 1022px) {
   .radio-group {
     justify-content: center;
@@ -192,7 +185,6 @@ body {
   }
 
   .options-container {
-    display: grid;
     grid-template-columns: 1.5fr 8fr 1.5fr;
     grid-template-rows: 3fr 0.05fr 1fr 0.05fr 1fr;
     grid-template-areas: 
@@ -211,9 +203,30 @@ body {
     margin-left: 1.5rem;
     margin-right: 1.5rem;
   }
+}
+
+@media only screen and (min-width: 1023px) {
+  .options-container {
+    grid-template-columns: 1fr 16fr 1fr;
+    grid-template-rows: 3fr 0.5fr 1fr 0.5fr 1fr;
+    grid-template-areas: 
+      ". radio-buttons ."
+      ". continent-filter ."
+      ". continent-select ."	
+      ". country-filter ."
+      ". country-select ."	
+    ;
+  }
+  }
+
+@media only screen and (min-width: 600px) and (max-width: 1022px) {
+
+  .radio-group{
+    margin-bottom: 2rem;
+  }
+
 
   .options-container {
-    display: grid;
     grid-template-columns: 1fr 16fr 1fr;
     grid-template-rows: 8fr 0.8fr 2fr 0.8fr 2fr;
     grid-template-areas: 
@@ -226,6 +239,7 @@ body {
   }
 }
 
+
 @media only screen and (max-width: 600px) {
   .radio-group{
     margin-bottom: 2rem;
@@ -233,6 +247,18 @@ body {
   .chart-container {
     margin-left: 1rem;
     margin-right: 1rem;
+  }
+
+  .options-container {
+    grid-template-columns: 1fr 16fr 1fr;
+    grid-template-rows: 6fr 0.8fr 1fr 0.8fr 1fr;
+    grid-template-areas: 
+      ". radio-buttons ."
+      ". continent-filter ."
+      ". continent-select ."	
+      ". country-filter ."
+      ". country-select ."	
+    ;
   }
 }
 

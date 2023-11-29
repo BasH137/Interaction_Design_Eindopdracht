@@ -27,11 +27,24 @@ async function fetchData() {
 
 function populateCountryList() {
   const selectedContinents = $("#continentSelect").val();
+  const selectedCountries = $("#countrySelect").val();
   const select = $("#countrySelect");
 
-  const countriesToKeep = data.filter((entry) =>
-    selectedContinents.includes(entry.continent)
-  );
+  let selectedCountriesToKeep;
+  
+  if (selectedContinents.length > 0) {
+    selectedCountriesToKeep = data.filter((entry) =>
+      selectedContinents.includes(entry.continent) && selectedCountries.includes(entry.country)
+    );
+  } else {
+    selectedCountriesToKeep = data.filter((entry) =>
+      selectedCountries.includes(entry.country)
+    );
+  }
+
+  const countriesToKeep = selectedContinents.length > 0
+    ? data.filter((entry) => selectedContinents.includes(entry.continent))
+    : data;
 
   // Remove options that are not in countriesToKeep
   select.find("option").each(function () {
@@ -61,9 +74,16 @@ function populateCountryList() {
   }
 
   // Initialize Select2
-  sortSelect(select[0]);
   select.select2();
+  sortSelect(select[0]);
+
+  // Extract an array of country values from selectedCountriesToKeep
+  const countryValues = selectedCountriesToKeep.map(entry => entry.country);
+
+  // Set default values for the country selection
+  select.val(countryValues).trigger("change");
 }
+
 
 function populateContinentList() {
   const select = $("#continentSelect");
