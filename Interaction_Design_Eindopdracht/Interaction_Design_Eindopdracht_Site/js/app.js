@@ -209,7 +209,6 @@ function drawCharts() {
       data.map((entry) => entry.educationExpenditure),
       data.map((entry) => entry.avgIncome),
       data.map((entry) => entry.avgTemp),
-      false
     );
   }
 }
@@ -272,12 +271,83 @@ function redrawChart() {
   const selectedCountries = $("#countrySelect").val();
   const selectedContinent = $("#continentSelect").val();
 
-  drawCharts();
-  // Draw the selected chart type
-  createFilteredChart(
-    selectedCountries,
-    selectedContinent
+  updateCharts(selectedCountries, selectedContinent);
+}
+
+function updateCharts(selectedCountries = [], selectedContinent = []) {
+
+  if (chartInstances.myScatterTempIq) {
+    chartInstances.myScatterTempIq.update();
+  }
+  if (chartInstances.myScatterEdIq) {
+    chartInstances.myScatterEdIq.update();
+  }
+  if (chartInstances.myScatterEdIN) {
+    chartInstances.myScatterEdIN.update();
+  }
+
+
+  const filteredData = data.filter(
+    (entry) =>
+      (selectedCountries.length > 0
+        ? selectedCountries.includes(entry.country)
+        : true) &&
+      (selectedContinent.length > 0
+        ? selectedContinent.includes(entry.continent)
+        : true)
   );
+
+  const countries = filteredData.map((entry) => entry.country);
+  const iqData = filteredData.map((entry) => entry.iq);
+  const expenditureData = filteredData.map(
+    (entry) => entry.educationExpenditure
+  );
+  const incomeData = filteredData.map((entry) => entry.avgIncome);
+  const temperatureData = filteredData.map((entry) => entry.avgTemp);
+
+  // Update the bar chart instance
+  if (chartInstances.myBarChart) {
+    chartInstances.myBarChart.data.labels = countries;
+    chartInstances.myBarChart.data.datasets[0].data = iqData;
+    chartInstances.myBarChart.data.datasets[1].data = expenditureData;
+    chartInstances.myBarChart.data.datasets[2].data = incomeData;
+    chartInstances.myBarChart.data.datasets[3].data = temperatureData;
+
+
+    // chartInstances.myBarChart.update();
+    updateConfigAsNewObject(chartInstances.myBarChart);
+  }
+}
+
+function updateConfigAsNewObject(chart) {
+  const isMobile = window.outerWidth <= 600;
+
+  chart.options= {
+    plugins: {
+      legend: {
+        display: true,
+        position: "top",
+        align: "center",
+        textDirection: "ltr",
+        labels: {
+          color: "rgb(255, 99, 132)",
+        },
+      },
+    },
+    maintainAspectRatio: false,
+    indexAxis: isMobile ? "y" : "x",
+    scales: {
+      x: {
+        beginAtZero: true,
+        position: isMobile ? "top" : "bottom",
+      },
+      y: {
+        beginAtZero: true,
+      },
+    },
+  }
+
+  chart.update();
 }
 
 function createFilteredChart(selectedCountries = [], selectedContinent = []) {
@@ -306,21 +376,14 @@ function createFilteredChart(selectedCountries = [], selectedContinent = []) {
   const incomeData = filteredData.map((entry) => entry.avgIncome);
   const temperatureData = filteredData.map((entry) => entry.avgTemp);
 
-  const isMobile = window.outerWidth <= 600;
 
-  if (isMobile && chartType === "bar") {
-    barChartCanvas.style = "height: 100vh";
-  } else {
-    barChartCanvas.style = "height: 37.5rem";
-  }
   chartInstances.myBarChart = createBarChart(
     ctx,
     countries,
     iqData,
     expenditureData,
     incomeData,
-    temperatureData,
-    isMobile
+    temperatureData
   );
 }
 
@@ -330,9 +393,9 @@ function createBarChart(
   iqData,
   expenditureData,
   incomeData,
-  temperatureData,
-  isMobile
+  temperatureData
 ) {
+  const isMobile = window.outerWidth <= 600;
   return new Chart(ctx, {
     type: "bar",
     data: {
