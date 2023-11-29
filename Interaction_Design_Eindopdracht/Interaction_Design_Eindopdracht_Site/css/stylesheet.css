@@ -1,16 +1,24 @@
 :root {
   --primary-color: #3498db;
-  --button-bg: #2ecc71;
   --hover-color: #bee1f8;
   --text-white: #fff;
   --text-black: black;
-  --delete-red: red;
   --responsive-margin-body: 8rem;
   --font-size-largest: 1.5rem;
   --header2-font-size: 1.2rem;
   --font-size: 1rem;
   --header3-font-size: var(--font-size);
   --line-height: 1.6;
+  
+  --background-color: #F5F5F5;
+  --link-color: var(--primary-color);
+  
+  --accent-red:#E74C3C; /* used in js  */
+  --delete-red: var(--accent-red);
+}
+
+a {
+  color: var(--link-color); /* Accent color for links */
 }
 
 body {
@@ -19,6 +27,8 @@ body {
   padding: 0;
   font-size: var(--font-size);
   line-height: var(--line-height);
+
+  background-color: var(--background-color);
 }
 
 .prose-center {
@@ -31,6 +41,7 @@ body {
 }
 
 .title {
+  margin: 0 1rem;
   margin-top: calc(var(--responsive-margin-body) / 2);
   margin-bottom: calc(var(--responsive-margin-body) / 2);
   font-size: var(--font-size-largest);
@@ -52,6 +63,7 @@ h3 {
 .chart-container {
   margin-left: var(--responsive-margin-body);
   margin-right: var(--responsive-margin-body);
+  margin-bottom: 1rem;
   min-height: 37.5rem;
 }
 
@@ -59,7 +71,7 @@ h3 {
   margin-bottom: 1rem;
 }
 
-.select-container {
+/* .select-container {
   display: flex;
   justify-content: center;
   align-items: start;
@@ -67,12 +79,11 @@ h3 {
   gap: 1rem;
   height: 50%;
 
-  /* margin-top: 1rem; */
-}
+} */
 
 .select2-container .select2-selection--multiple {
-  max-height: 50px; /* Set a maximum height for the selection area */
-  overflow-y: auto; /* Enable vertical scrolling if the content exceeds the max height */
+  max-height: 150px; 
+  overflow-y: auto; 
 }
 
 .select2-container .select2-selection__rendered {
@@ -89,15 +100,33 @@ h3 {
   box-sizing: border-box;
 }
 
-.options-container {
+/* .options-container {
   display: grid;
-  grid-template-columns: 1fr 16fr 1fr;
+  grid-template-columns: 1fr;
   grid-template-rows: 0.5fr 1fr 0.5fr 1fr;
   grid-template-areas:
-    ". continent-filter ."
-    ". continent-select ."
-    ". country-filter ."
-    ". country-select .";
+  ". continent-filter ."
+  ". continent-select ."
+  ". country-filter ."
+  ". country-select .";
+} */
+.options-container {
+  display: grid;
+  grid-template-columns: 9fr 1fr; 
+  grid-template-rows: 0.5fr auto 0.5fr auto;
+  grid-template-areas:
+    "continent-filter ."
+    "continent-select continent-remove"
+    "country-filter ."
+    "country-select country-remove";
+}
+
+.js-button-filter-continent-remove {
+  grid-area: continent-remove;
+}
+
+.js-button-filter-country-remove {
+  grid-area: country-remove;
 }
 
 .margin-bottom-m {
@@ -124,17 +153,19 @@ h3 {
   width: 100% !important;
 }
 
-/* asdibhyflfasdkhljb */
-/* Delete button styling */
 .btn-delete {
   background-color: var(--text-white);
   border: 1px solid var(--delete-red);
   color: var(--delete-red);
-  /* padding: 0.625rem 1.25rem; */
   padding: 0.25rem 0.5rem;
   border-radius: 0.3125rem;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s, border 0.3s;
+
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+
+  height: 36.2px;
 }
 
 .btn-delete:hover {
@@ -149,21 +180,6 @@ h3 {
 }
 .select2-selection__choice__remove {
   color: var(--delete-red) !important;
-}
-
-
-@media only screen and (max-width: 600px) {
- 
-  .options-container {
-    display: grid;
-    grid-template-columns: 1fr 16fr 1fr;
-    grid-template-rows: 0.5fr 1fr 0.5fr 1fr;
-    grid-template-areas:
-      ". continent-filter ."
-      ". continent-select ."
-      ". country-filter ."
-      ". country-select .";
-  }
 }
 
 @media only screen and (max-width: 800px) {
@@ -182,7 +198,7 @@ h3 {
   .prose-center {
     margin-left: 1rem;
     margin-right: 1rem;
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.8rem;
   }
 }
 

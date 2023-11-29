@@ -4,15 +4,26 @@ let continentData = [];
 let chartInstances = {};
 let chartType = "bar";
 // Colors for each dataset
-const scatterColor = "rgba(255, 0, 0, 1)";
-const iqColor = "rgba(75, 192, 192, 0.2)";
-const iqBorderColor = "rgba(75, 192, 192, 1)";
-const expenditureColor = "rgba(255, 99, 132, 0.2)";
-const expenditureBorderColor = "rgba(255, 99, 132, 1)";
-const incomeColor = "rgba(255, 205, 86, 0.2)";
-const incomeBorderColor = "rgba(255, 205, 86, 1)";
-const temperatureColor = "rgba(169, 169, 169, 0.2)";
+const scatterColor = "rgba(231, 76, 60, 1)";
+
+// const iqColor = "rgba(75, 192, 192, 0.2)";
+// const iqBorderColor = "rgba(75, 192, 192, 1)";
+// const expenditureColor = "rgba(255, 99, 132, 0.2)";
+// const expenditureBorderColor = "rgba(255, 99, 132, 1)";
+// const incomeColor = "rgba(255, 205, 86, 0.2)";
+// const incomeBorderColor = "rgba(255, 205, 86, 1)";
+// const temperatureColor = "rgba(169, 169, 169, 0.2)";
+// const temperatureBorderColor = "rgba(169, 169, 169, 1)";
+const iqColor = "rgba(103, 169, 207, 0.5)";
+const iqBorderColor = "rgba(103, 169, 207, 1)";
+const expenditureColor = "rgba(220, 144, 149, 0.5)";
+const expenditureBorderColor = "rgba(220, 144, 149, 1)";
+const incomeColor = "rgba(238, 211, 120, 0.5)";
+const incomeBorderColor = "rgba(238, 211, 120, 1)";
+const temperatureColor = "rgba(169, 169, 169, 0.5)";
 const temperatureBorderColor = "rgba(169, 169, 169, 1)";
+
+
 
 async function fetchData() {
   try {
