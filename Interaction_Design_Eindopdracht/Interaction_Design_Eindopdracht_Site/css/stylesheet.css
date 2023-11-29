@@ -165,3 +165,35 @@ h3 {
       ". country-select .";
   }
 }
+
+@media only screen and (max-width: 800px) {
+  :root {
+    --responsive-margin-body: 3rem;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  :root {
+    --responsive-margin-body: 3rem;
+  }
+  .prose-center {
+    margin: 0 auto;
+  }
+  .prose-center {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 1.3em;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  :root {
+    --responsive-margin-body: 2rem;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  :root {
+    --responsive-margin-body: 1rem;
+  }
+}
